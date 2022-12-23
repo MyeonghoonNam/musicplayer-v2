@@ -9,7 +9,7 @@ const Home = () => {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 			</Head>
 
-			<main>MusicPlayer</main>
+			<h1 className="text-3xl font-bold underline">MusicPlayer</h1>
 		</>
 	);
 };
