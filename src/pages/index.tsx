@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-const Home = () => {
+const Main = () => {
 	return (
 		<>
 			<Head>
@@ -9,9 +9,9 @@ const Home = () => {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 			</Head>
 
-			<h1 className="text-3xl font-bold underline">MusicPlayer</h1>
+			<div className="w-[100vw] bg-[#9B51E0] underline">Home</div>
 		</>
 	);
 };
 
-export default Home;
+export default Main;
