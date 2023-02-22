@@ -67,7 +67,8 @@
           "{}": false
         }
       }
-    ]
+    ],
+    "import/prefer-default-export": "off"
   },
   "settings": {
     "import/resolver": {
