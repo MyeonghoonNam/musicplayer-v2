@@ -1,5 +1,5 @@
-import useIsMobile from 'hooks/useIsMobile';
-import ViewSizeWarn from '@components/ViewSizeWarn';
+import { useIsMobile } from '@/hooks';
+import { ViewSizeWarn } from '@/components';
 
 import type { Props } from './types';
 
