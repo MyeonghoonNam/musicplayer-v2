@@ -5,8 +5,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "storybook": "start-storybook -p 6006 -s ./public",
+    "build-storybook": "build-storybook s public",
     "server": "nodemon ./server/index.ts"
   },
   "dependencies": {
@@ -59,6 +59,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "postcss": "^8.4.20",
     "prettier": "^2.8.1",
+    "storybook-addon-next": "^1.7.2",
     "storybook-css-modules-preset": "^1.1.1",
     "tailwindcss": "^3.2.4",
     "twin.macro": "^3.1.0"
