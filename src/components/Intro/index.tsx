@@ -23,7 +23,13 @@ const Intro = () => {
         },
       ]}
     >
-      <Image src="/logo.png" alt="intro" width={134} height={63} priority />
+      <Image
+        src="/images/logo.png"
+        alt="intro"
+        width={134}
+        height={63}
+        priority
+      />
     </div>
   );
 };
