@@ -16,10 +16,11 @@ const Intro = () => {
   return (
     <div
       css={[
-        tw`flex justify-center items-center fixed top-0 bottom-0 left-0 right-0 w-[100vw] h-[100vh] bg-[#9B51E0] z-[1000]`,
+        tw`flex justify-center items-center fixed top-0 bottom-0 left-0 right-0 w-[100vw] h-[100vh] bg-[#9B51E0]`,
         {
           opacity: show ? '1' : '0',
-          transition: 'opacity 2s ease-out',
+          transition: 'opacity 1.5s ease-out',
+          zIndex: show ? '1000' : '-1000',
         },
       ]}
     >
