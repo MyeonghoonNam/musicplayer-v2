@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Intro } from '@/components';
+import { Intro, TapMenu } from '@/components';
 
 const Main = () => {
   return (
@@ -13,6 +13,8 @@ const Main = () => {
       <Intro />
 
       <div className="w-[100vw] bg-[#9B51E0] underline">Home</div>
+
+      <TapMenu />
     </>
   );
 };
