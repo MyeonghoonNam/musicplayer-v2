@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const TapMenu = () => {
+const TabMenu = () => {
   return (
     <nav className="fixed bottom-0 flex w-full h-[80px] justify-around bg-[#F2F2F2]">
       <div className="flex flex-col justify-center items-center cursor-pointer">
@@ -21,4 +21,4 @@ const TapMenu = () => {
   );
 };
 
-export default TapMenu;
+export default TabMenu;
