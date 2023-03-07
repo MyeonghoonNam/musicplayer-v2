@@ -1,4 +1,4 @@
 export { default as Layout } from './Layout';
 export { default as ViewSizeWarn } from './ViewSizeWarn';
 export { default as Intro } from './Intro';
-export { default as TapMenu } from './TapMenu';
+export { default as TapMenu } from './TabMenu';
