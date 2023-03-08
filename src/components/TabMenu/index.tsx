@@ -1,11 +1,11 @@
 import Image from 'next/image';
+import { useState } from 'react';
+
 import type { Menu } from './types';
 
-interface Props {
-  menu: Menu;
-}
+const TabMenu = () => {
+  const [menu, setMenu] = useState<Menu>('Top 5');
 
-const TabMenu = ({ menu }: Props) => {
   return (
     <nav className="fixed bottom-0 flex w-full h-[80px] justify-around bg-[#F2F2F2]">
       <button
