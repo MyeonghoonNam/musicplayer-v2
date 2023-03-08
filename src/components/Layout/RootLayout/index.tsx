@@ -1,9 +1,12 @@
+import { ReactNode } from 'react';
 import { useIsMobile } from '@/hooks';
 import { ViewSizeWarn } from '@/components';
 
-import type { Props } from './types';
+interface Props {
+  children: ReactNode;
+}
 
-const Layout = ({ children }: Props) => {
+const RootLayout = ({ children }: Props) => {
   const [isMobile, isLoading] = useIsMobile();
 
   if (isLoading) return null;
@@ -11,4 +14,4 @@ const Layout = ({ children }: Props) => {
   return <main>{isMobile ? children : <ViewSizeWarn />}</main>;
 };
 
-export default Layout;
+export default RootLayout;
