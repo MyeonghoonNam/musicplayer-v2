@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { ReactElement } from 'react';
-import { Intro, TabMenuLayout } from '@/components';
+import { Intro, TabMenuLayout, Top5Roof } from '@/components';
 
 const MainPage = () => {
   return (
@@ -12,8 +12,7 @@ const MainPage = () => {
       </Head>
 
       <Intro />
-
-      <div className="w-[100vw] bg-[#9B51E0] underline">Home</div>
+      <Top5Roof />
     </>
   );
 };
