@@ -11,7 +11,11 @@ const RootLayout = ({ children }: Props) => {
 
   if (isLoading) return null;
 
-  return <main>{isMobile ? children : <ViewSizeWarn />}</main>;
+  return (
+    <main className="w-[100%] h-[calc(100vh-80px)]">
+      {isMobile ? children : <ViewSizeWarn />}
+    </main>
+  );
 };
 
 export default RootLayout;

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { ReactElement } from 'react';
-import { Intro, TabMenuLayout, Top5Roof } from '@/components';
+import { Intro, TabMenuLayout, Top5Roof, Top5List } from '@/components';
 
 const MainPage = () => {
   return (
@@ -11,8 +11,11 @@ const MainPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <Intro />
-      <Top5Roof />
+      <article className="h-full">
+        <Intro />
+        <Top5Roof />
+        <Top5List />
+      </article>
     </>
   );
 };
