@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { ReactElement } from 'react';
-import { Intro, TabMenuLayout, Top5Roof, Top5List } from '@/components';
+import { Intro, TabMenuLayout, Top3Roof } from '@/components';
 
 const MainPage = () => {
   return (
@@ -13,8 +13,7 @@ const MainPage = () => {
 
       <article className="h-full">
         <Intro />
-        <Top5Roof />
-        <Top5List />
+        <Top3Roof />
       </article>
     </>
   );

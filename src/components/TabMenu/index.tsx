@@ -10,7 +10,7 @@ const TabMenu = () => {
     () => [
       {
         id: 'menu1',
-        name: 'Top 5',
+        name: 'Top 3',
         path: '/',
         on: '/icons/music_on.png',
         off: '/icons/music.png',
