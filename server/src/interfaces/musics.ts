@@ -4,4 +4,5 @@ export interface Music {
   artists: string[];
   cover: string;
   source: string;
+  vote: number;
 }
