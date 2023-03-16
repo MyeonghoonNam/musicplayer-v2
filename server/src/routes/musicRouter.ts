@@ -3,6 +3,6 @@ import { getTop3Musics } from '../controllers/musicController';
 
 const router = express.Router();
 
-router.get('/top5', getTop3Musics);
+router.get('/top3', getTop3Musics);
 
 export default router;
