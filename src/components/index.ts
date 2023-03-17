@@ -4,3 +4,4 @@ export { default as ViewSizeWarn } from './ViewSizeWarn';
 export { default as Intro } from './Intro';
 export { default as TabMenu } from './TabMenu';
 export { default as Top3Roof } from './Top3Roof';
+export { default as Top3PlayList } from './Top3PlayList';
