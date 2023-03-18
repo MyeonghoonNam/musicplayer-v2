@@ -4,9 +4,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "storybook": "start-storybook -p 6006 -s ./public",
-    "build-storybook": "build-storybook s public"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/babel-preset-css-prop": "^11.10.0",
@@ -28,15 +26,6 @@
   "devDependencies": {
     "@babel/core": "^7.20.7",
     "@emotion/babel-plugin": "^11.10.6",
-    "@storybook/addon-actions": "^6.5.15",
-    "@storybook/addon-essentials": "^6.5.15",
-    "@storybook/addon-interactions": "^6.5.15",
-    "@storybook/addon-links": "^6.5.15",
-    "@storybook/addon-postcss": "^2.0.0",
-    "@storybook/builder-webpack5": "^6.5.15",
-    "@storybook/manager-webpack5": "^6.5.15",
-    "@storybook/react": "^6.5.15",
-    "@storybook/testing-library": "^0.0.13",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
     "autoprefixer": "^10.4.13",
@@ -53,8 +42,6 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "postcss": "^8.4.20",
     "prettier": "^2.8.1",
-    "storybook-addon-next": "^1.7.2",
-    "storybook-css-modules-preset": "^1.1.1",
     "tailwindcss": "^3.2.4",
     "twin.macro": "^3.1.0"
   },

@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import Image from 'next/image';
 import tw from 'twin.macro';
 import { useEffect, useState } from 'react';
