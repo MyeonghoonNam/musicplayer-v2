@@ -1,7 +1,12 @@
 import ReactDOM from 'react-dom';
+import ToastManager from './ToastManager';
+
+import type { CreateToast } from './types';
 
 class Toast {
   portal: HTMLElement;
+
+  createToast!: CreateToast;
 
   constructor() {
     const portalId = 'toast-portal';
@@ -16,8 +21,15 @@ class Toast {
       document.body.appendChild(this.portal);
     }
 
-    // Toast 기능 관리를 위한 Manager 구현
-    // ReactDOM.render();
+    const handleBind = (createToast: CreateToast) => {
+      this.createToast = createToast;
+    };
+
+    ReactDOM.render(<ToastManager onBind={handleBind} />, this.portal);
+  }
+
+  show(message: string, duration = 2000) {
+    this.createToast(message, duration);
   }
 }
 
