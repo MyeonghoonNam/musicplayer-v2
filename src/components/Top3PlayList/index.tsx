@@ -1,8 +1,15 @@
 import Image from 'next/image';
+import { useCallback, useMemo } from 'react';
 import { useTop3Musics } from '@/queries';
+import { Toast } from '@/components';
 
 const Top3PlayList = () => {
   const { data: musics } = useTop3Musics();
+  const toastDuration = useMemo(() => 2000, []);
+
+  const handleAddClick = useCallback(() => {
+    Toast.show('보관함에 추가되었습니다.', toastDuration);
+  }, [toastDuration]);
 
   return (
     <ol className="h-[65%] pt-[18px] [&>li+li]:mt-[10px]">
@@ -40,7 +47,7 @@ const Top3PlayList = () => {
                   height={20}
                 />
               </button>
-              <button type="button">
+              <button type="button" onClick={handleAddClick}>
                 <Image
                   src="/icons/plus.png"
                   alt="추가"
