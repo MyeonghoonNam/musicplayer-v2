@@ -1,5 +1,5 @@
 import express from 'express';
-import { getTop3Musics } from '../controllers/musicController';
+import { getTop3Musics } from '@/controllers/musicController';
 
 const router = express.Router();
 

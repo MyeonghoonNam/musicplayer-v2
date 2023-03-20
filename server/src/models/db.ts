@@ -1,7 +1,7 @@
 import path, { join } from 'path';
 import { Low, JSONFile } from 'lowdb';
 
-import { Music } from '../interfaces/musics';
+import { Music } from '@/interfaces/musics';
 
 export interface Data {
   musics: Music[];
