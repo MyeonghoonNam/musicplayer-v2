@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { createConnection } from './models/db';
 import app from './app';
 

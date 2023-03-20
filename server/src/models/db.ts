@@ -1,4 +1,3 @@
-/* eslint-disable import/no-mutable-exports */
 import path, { join } from 'path';
 import { Low, JSONFile } from 'lowdb';
 
@@ -13,6 +12,7 @@ export let db: Low<Data>;
 export const createConnection = async () => {
   const dirname = path.resolve();
   const filePath = join(dirname, './db/db.json');
+  console.log(filePath);
   const adapter = new JSONFile<Data>(filePath);
 
   db = new Low(adapter);
