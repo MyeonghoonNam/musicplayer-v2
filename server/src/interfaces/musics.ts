@@ -1,8 +1,10 @@
 export interface Music {
-  id: number;
+  id: string;
   title: string;
   artists: string[];
   cover: string;
   source: string;
   vote: number;
+  createdAt: string;
+  updatedAt: string;
 }
