@@ -56,3 +56,14 @@ export const createConnection = async () => {
   await db.read();
   await db.write();
 };
+
+export const create = <T>(content: any): T => {
+  const timestamp = new Date().toISOString();
+
+  return {
+    id: nanoid(),
+    ...content,
+    createdAt: timestamp,
+    updatedAt: timestamp,
+  };
+};
