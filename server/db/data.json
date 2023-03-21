@@ -1,7 +1,6 @@
 {
   "musics": [
     {
-      "id": 1,
       "title": "19th Floor",
       "artists": ["Bobby Richards"],
       "cover": "/images/cover/19th_floor.png",
@@ -9,7 +8,6 @@
       "vote": 8697
     },
     {
-      "id": 2,
       "title": "Sunny Travel",
       "artists": ["Nico Staf"],
       "cover": "/images/cover/sunny_travel.png",
@@ -17,7 +15,6 @@
       "vote": 5210
     },
     {
-      "id": 3,
       "title": "Where We Wanna Go",
       "artists": ["Patrick Patrikios"],
       "cover": "/images/cover/where_we_wanna_go.png",
@@ -25,7 +22,6 @@
       "vote": 6319
     },
     {
-      "id": 4,
       "title": "All the Fixings",
       "artists": ["Zachariah Hickman"],
       "cover": "/images/cover/all_the_fixings.png",
@@ -33,7 +29,6 @@
       "vote": 7500
     },
     {
-      "id": 5,
       "title": "Bourree",
       "artists": ["Joel Cummins"],
       "cover": "/images/cover/bourree.png",
