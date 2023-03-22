@@ -5,6 +5,4 @@ export interface Music {
   cover: string;
   source: string;
   vote: number;
-  createdAt: string;
-  updatedAt: string;
 }
