@@ -1,15 +1,22 @@
 import Image from 'next/image';
 import { useCallback, useMemo } from 'react';
 import { useTop3Musics } from '@/queries';
+import { useAddPlayList } from '@/mutation';
 import { Toast } from '@/components';
 
 const Top3PlayList = () => {
   const { data: musics } = useTop3Musics();
+  const { mutateAsync: addPlayList } = useAddPlayList();
+
   const toastDuration = useMemo(() => 2000, []);
 
-  const handleAddClick = useCallback(() => {
-    Toast.show('보관함에 추가되었습니다.', toastDuration);
-  }, [toastDuration]);
+  const handleAddClick = useCallback(
+    async (id: string) => {
+      await addPlayList(id);
+      Toast.show('보관함에 추가되었습니다.', toastDuration);
+    },
+    [addPlayList, toastDuration],
+  );
 
   return (
     <ol className="h-[65%] pt-[18px] [&>li+li]:mt-[10px]">
@@ -47,7 +54,7 @@ const Top3PlayList = () => {
                   height={20}
                 />
               </button>
-              <button type="button" onClick={handleAddClick}>
+              <button type="button" onClick={() => handleAddClick(id)}>
                 <Image
                   src="/icons/plus.png"
                   alt="추가"
