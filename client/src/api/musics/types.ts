@@ -1,7 +1,7 @@
 export interface Music {
+  id: string;
   artists: string[];
   cover: string;
-  id: number;
   source: string;
   title: string;
   vote: number;
