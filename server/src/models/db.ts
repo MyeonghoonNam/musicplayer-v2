@@ -8,6 +8,7 @@ import { Music } from '../interfaces/musics';
 
 export interface Data {
   musics: Music[];
+  playlist: Music[];
 }
 
 const dirname = path.resolve();
@@ -29,16 +30,10 @@ export const initDatabase = async () => {
     const jsonData = JSON.parse(jsonFile);
 
     for (const key of Object.keys(jsonData)) {
-      jsonData[key] = jsonData[key].map((content: any) => {
-        const timestamp = new Date().toISOString();
-
-        return {
-          id: nanoid(),
-          ...content,
-          createdAt: timestamp,
-          updatedAt: timestamp,
-        };
-      });
+      jsonData[key] = jsonData[key].map((content: any) => ({
+        id: nanoid(),
+        ...content,
+      }));
     }
 
     await fs.writeFile(filePath, JSON.stringify(jsonData));
@@ -64,6 +59,5 @@ export const create = <T>(content: any): T => {
     id: nanoid(),
     ...content,
     createdAt: timestamp,
-    updatedAt: timestamp,
   };
 };
