@@ -1,71 +1,37 @@
-import Image from 'next/image';
-import { useCallback, useMemo } from 'react';
-import { useTop3Musics, useAddPlayList } from '@/pages/main/hooks';
-import { Toast } from '@/components';
+import { useTop3Musics } from '@/pages/main/hooks';
+
+import MusicScore from './MusicScore';
+import MusicCover from './MusicCover';
+import MusicTitle from './MusicTitle';
+import MusicArtists from './MusicArtists';
+import MusicController from './MusicController';
+
+import * as Styled from './styled';
 
 const Top3PlayList = () => {
   const { data: musics } = useTop3Musics();
-  const { mutateAsync: addPlayList } = useAddPlayList();
-
-  const toastDuration = useMemo(() => 2000, []);
-
-  const handleAddClick = useCallback(
-    async (id: string) => {
-      await addPlayList(id);
-      Toast.show('보관함에 추가되었습니다.', toastDuration);
-    },
-    [addPlayList, toastDuration],
-  );
 
   return (
-    <ol className="h-[65%] pt-[18px] [&>li+li]:mt-[10px]">
+    <Styled.Container>
       {musics?.map(({ id, cover, title, artists }, index) => (
-        <li key={id} className="flex">
-          <span className="flex justify-center items-center w-[48px] text-[14px] font-bold text-[#9b51e0]">
-            {index + 1}
-          </span>
+        <Styled.ItemContainer key={id}>
+          <MusicScore score={index + 1} />
 
-          <div className="flex grow justify-between pr-[20px]">
-            <div className="flex">
-              <Image
-                src={cover}
-                alt="cover"
-                width={50}
-                height={50}
-                className="inline-block rounded-[5px] mr-[16px]"
-                priority
-              />
+          <Styled.ContentsAndControllerContainer>
+            <Styled.ContentsContainer>
+              <MusicCover cover={cover} />
 
-              <div className="flex flex-col justify-center">
-                <strong className="text-[14px] leading-[20px] font-bold">
-                  {title}
-                </strong>
-                <em>{artists.join(', ')}</em>
-              </div>
-            </div>
+              <Styled.TitleAndArtistsContainer>
+                <MusicTitle title={title} />
+                <MusicArtists artists={artists} />
+              </Styled.TitleAndArtistsContainer>
+            </Styled.ContentsContainer>
 
-            <div className="flex items-center [&>button+button]:ml-[8px]">
-              <button type="button">
-                <Image
-                  src="/icons/play.png"
-                  alt="재생"
-                  width={20}
-                  height={20}
-                />
-              </button>
-              <button type="button" onClick={() => handleAddClick(id)}>
-                <Image
-                  src="/icons/plus.png"
-                  alt="추가"
-                  width={20}
-                  height={20}
-                />
-              </button>
-            </div>
-          </div>
-        </li>
+            <MusicController id={id} />
+          </Styled.ContentsAndControllerContainer>
+        </Styled.ItemContainer>
       ))}
-    </ol>
+    </Styled.Container>
   );
 };
 
