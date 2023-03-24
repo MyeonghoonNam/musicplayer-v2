@@ -23,3 +23,11 @@ export const ContentsContainer = ({ children }: Props) => {
 export const TitleAndArtistsContainer = ({ children }: Props) => {
   return <div className="flex flex-col justify-center">{children}</div>;
 };
+
+export const ControllerContainer = ({ children }: Props) => {
+  return (
+    <div className="flex items-center [&>button+button]:ml-[8px]">
+      {children}
+    </div>
+  );
+};
