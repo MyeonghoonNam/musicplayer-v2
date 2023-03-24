@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useCallback, useMemo } from 'react';
-import { useTop3Musics } from '@/queries';
+import { useTop3Musics } from '@/pages/main/hooks';
 import { useAddPlayList } from '@/mutation';
 import { Toast } from '@/components';
 
