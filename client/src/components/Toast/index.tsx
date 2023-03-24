@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import ToastManager from './ToastManager';
 
 import type { CreateToast } from './types';
@@ -25,7 +25,8 @@ class Toast {
         this.createToast = createToast;
       };
 
-      ReactDOM.render(<ToastManager onBind={handleBind} />, this.portal);
+      const root = ReactDOM.createRoot(this.portal);
+      root.render(<ToastManager onBind={handleBind} />);
     }
   }
 
