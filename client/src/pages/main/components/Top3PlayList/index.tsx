@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { useCallback, useMemo } from 'react';
-import { useTop3Musics } from '@/pages/main/hooks';
-import { useAddPlayList } from '@/mutation';
+import { useTop3Musics, useAddPlayList } from '@/pages/main/hooks';
 import { Toast } from '@/components';
 
 const Top3PlayList = () => {
