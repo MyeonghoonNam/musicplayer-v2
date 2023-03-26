@@ -1,6 +1,9 @@
 import Head from 'next/head';
 import { ReactElement } from 'react';
 import { TabMenuLayout } from '@/components';
+import { Title } from './components';
+
+import * as Styled from './styled';
 
 const PlayList = () => {
   return (
@@ -11,9 +14,9 @@ const PlayList = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div>
-        <div>init PlayList</div>
-      </div>
+      <Styled.Container>
+        <Title />
+      </Styled.Container>
     </>
   );
 };
