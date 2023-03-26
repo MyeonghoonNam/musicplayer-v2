@@ -3,6 +3,8 @@ import { ReactElement } from 'react';
 import { Intro, Top3Roof, Top3PlayList } from './main/components';
 import { TabMenuLayout } from '@/components';
 
+import * as Styled from './styled';
+
 const MainPage = () => {
   return (
     <>
@@ -12,11 +14,11 @@ const MainPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <article className="h-full">
+      <Styled.Container>
         <Intro />
         <Top3Roof />
         <Top3PlayList />
-      </article>
+      </Styled.Container>
     </>
   );
 };
