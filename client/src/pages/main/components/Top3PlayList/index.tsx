@@ -1,15 +1,27 @@
-import { useTop3Musics } from '@/pages/main/hooks';
+import { useCallback, useMemo } from 'react';
+import { Toast, MusicController } from '@/components';
+import { useTop3Musics, useAddPlayList } from '@/pages/main/hooks';
 
 import MusicScore from './MusicScore';
 import MusicCover from './MusicCover';
 import MusicTitle from './MusicTitle';
 import MusicArtists from './MusicArtists';
-import MusicController from './MusicController';
 
 import * as Styled from './styled';
 
 const Top3PlayList = () => {
   const { data: musics } = useTop3Musics();
+  const { mutateAsync: addPlayList } = useAddPlayList();
+
+  const toastDuration = useMemo(() => 2000, []);
+
+  const handleControllerAddClick = useCallback(
+    async (id: string) => {
+      await addPlayList(id);
+      Toast.show('보관함에 추가되었습니다.', toastDuration);
+    },
+    [addPlayList, toastDuration],
+  );
 
   return (
     <Styled.Container>
@@ -27,7 +39,14 @@ const Top3PlayList = () => {
               </Styled.TitleAndArtistsContainer>
             </Styled.ContentsContainer>
 
-            <MusicController id={id} />
+            <Styled.ControllerContainer>
+              <MusicController.Play
+                onClick={() => handleControllerAddClick(id)}
+              />
+              <MusicController.Plus
+                onClick={() => handleControllerAddClick(id)}
+              />
+            </Styled.ControllerContainer>
           </Styled.ContentsAndControllerContainer>
         </Styled.ItemContainer>
       ))}
