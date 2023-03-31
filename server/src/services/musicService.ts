@@ -1,6 +1,10 @@
 import { db, create } from '../models/db';
 import type { Music } from '../interfaces/musics';
 
+export const findMusic = (id: string) => {
+  return db.data?.musics.find((music) => music.id === id);
+};
+
 export const findTop3Musics = () => {
   const playlist = db.data?.playlist;
   const musics = db.data?.musics
