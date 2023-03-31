@@ -5,4 +5,5 @@ export interface Music {
   source: string;
   title: string;
   vote: number;
+  hasPlaylist?: boolean;
 }

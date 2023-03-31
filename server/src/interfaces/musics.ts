@@ -5,4 +5,5 @@ export interface Music {
   cover: string;
   source: string;
   vote: number;
+  hasPlaylist?: boolean;
 }
