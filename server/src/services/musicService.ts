@@ -16,7 +16,7 @@ export const findTop3Musics = () => {
 };
 
 export const addPlayList = async (id: string) => {
-  const music = db.data?.musics.filter((m) => m.id === id)[0];
+  const music = db.data?.musics.find((m) => m.id === id);
 
   if (music) {
     db.data?.playlist.push(create<Music>(music));
