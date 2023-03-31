@@ -70,7 +70,8 @@
     ],
     "import/prefer-default-export": "off",
     "react/jsx-no-useless-fragment": "off",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "react/require-default-props": "off"
   },
   "settings": {
     "import/resolver": {
