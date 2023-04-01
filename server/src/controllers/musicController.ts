@@ -21,7 +21,6 @@ export const addPlayList = (req: Request, res: Response) => {
   }
 
   const playlistMusic = musicService.findPlayListMusic(musicId);
-  console.log(playlistMusic);
 
   if (!playlistMusic) {
     const music = musicService.findMusic(musicId);
