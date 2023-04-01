@@ -21,9 +21,18 @@ export const addPlayList = (req: Request, res: Response) => {
   }
 
   const playlistMusic = musicService.findPlayListMusic(musicId);
+  console.log(playlistMusic);
 
   if (!playlistMusic) {
     const music = musicService.findMusic(musicId);
+
+    if (!music) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .send(createError(MUSICS_ERRORS.MUSIC_NOT_FOUND));
+    }
+
+    musicService.addPlayList(music);
 
     return res.status(StatusCodes.OK).send(createResponse(music));
   }
