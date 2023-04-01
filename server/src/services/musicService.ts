@@ -29,3 +29,13 @@ export const addPlayList = async (id: string) => {
 
   return music;
 };
+
+export const deletePlayList = async (music: Music) => {
+  const filterdPlaylist = db.data?.playlist.filter(({ id }) => id !== music.id);
+
+  if (filterdPlaylist && db.data) {
+    db.data.playlist = filterdPlaylist;
+  }
+
+  await db.write();
+};
