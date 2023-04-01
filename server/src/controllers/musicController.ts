@@ -11,11 +11,11 @@ export const getTop3Musics = async (req: Request, res: Response) => {
   return res.status(StatusCodes.OK).send(createResponse(top3Musics));
 };
 
-export const addPlayList = async (req: Request, res: Response) => {
+export const addPlayList = (req: Request, res: Response) => {
   const { id: musicId } = req.params;
 
   if (musicId) {
-    const music = await musicService.addPlayList(musicId);
+    const music = musicService.addPlayList(musicId);
 
     if (music) {
       return res.status(StatusCodes.OK).send(createResponse(music));
@@ -25,4 +25,26 @@ export const addPlayList = async (req: Request, res: Response) => {
   return res
     .status(StatusCodes.BAD_REQUEST)
     .send(createError(MUSICS_ERRORS.INVALID_MUSIC_ID));
+};
+
+export const deletePlayList = async (req: Request, res: Response) => {
+  const { id: musicId } = req.params;
+
+  if (!musicId) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .send(createError(MUSICS_ERRORS.INVALID_MUSIC_ID));
+  }
+
+  const music = musicService.findMusic(musicId);
+
+  if (!music) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .send(createError(MUSICS_ERRORS.MUSIC_NOT_FOUND));
+  }
+
+  await musicService.deletePlayList(music);
+
+  return res.status(StatusCodes.OK).send(null);
 };
