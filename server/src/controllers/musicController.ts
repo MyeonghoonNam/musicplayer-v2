@@ -8,6 +8,12 @@ import { MUSICS_ERRORS } from '../constants/musics';
 export const getTop3Musics = async (req: Request, res: Response) => {
   const top3Musics = musicService.findTop3Musics();
 
+  if (!top3Musics || top3Musics.length === 0) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .send(createError(MUSICS_ERRORS.MUSIC_NOT_FOUND));
+  }
+
   return res.status(StatusCodes.OK).send(createResponse(top3Musics));
 };
 
