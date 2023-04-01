@@ -14,17 +14,23 @@ export const getTop3Musics = async (req: Request, res: Response) => {
 export const addPlayList = (req: Request, res: Response) => {
   const { id: musicId } = req.params;
 
-  if (musicId) {
-    const music = musicService.addPlayList(musicId);
+  if (!musicId) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .send(createError(MUSICS_ERRORS.INVALID_MUSIC_ID));
+  }
 
-    if (music) {
-      return res.status(StatusCodes.OK).send(createResponse(music));
-    }
+  const playlistMusic = musicService.findPlayListMusic(musicId);
+
+  if (!playlistMusic) {
+    const music = musicService.findMusic(musicId);
+
+    return res.status(StatusCodes.OK).send(createResponse(music));
   }
 
   return res
     .status(StatusCodes.BAD_REQUEST)
-    .send(createError(MUSICS_ERRORS.INVALID_MUSIC_ID));
+    .send(createError(MUSICS_ERRORS.EXIST_PLAYLIST_MUSIC));
 };
 
 export const deletePlayList = async (req: Request, res: Response) => {

@@ -5,6 +5,10 @@ export const findMusic = (id: string) => {
   return db.data?.musics.find((music) => music.id === id);
 };
 
+export const findPlayListMusic = (id: string) => {
+  return db.data?.playlist.find((music) => music.id === id);
+};
+
 export const findTop3Musics = () => {
   const playlist = db.data?.playlist;
   const musics = db.data?.musics
@@ -19,13 +23,9 @@ export const findTop3Musics = () => {
   return musics;
 };
 
-export const addPlayList = async (id: string) => {
-  const music = db.data?.musics.find((m) => m.id === id);
-
-  if (music) {
-    db.data?.playlist.push(create<Music>(music));
-    await db.write();
-  }
+export const addPlayList = async (music: Music) => {
+  db.data?.playlist.push(create<Music>(music));
+  await db.write();
 
   return music;
 };
