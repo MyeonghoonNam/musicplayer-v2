@@ -11,3 +11,5 @@ export const addPlayList = (id: string) =>
 export const deletePlayList = async (id: string) => {
   config.delete(`${RESOURCE}/playlist/${id}`);
 };
+
+export const getPlayList = () => config.get<Music[]>(`${RESOURCE}/playlist`);
