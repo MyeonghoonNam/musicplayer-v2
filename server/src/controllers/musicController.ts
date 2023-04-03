@@ -5,7 +5,7 @@ import * as musicService from '../services/musicService';
 import { createResponse, createError } from '../utils/responseUtils';
 import { MUSICS_ERRORS } from '../constants/musics';
 
-export const getTop3Musics = async (req: Request, res: Response) => {
+export const getTop3Musics = (req: Request, res: Response) => {
   const top3Musics = musicService.findTop3Musics();
 
   if (!top3Musics || top3Musics.length === 0) {
@@ -15,6 +15,18 @@ export const getTop3Musics = async (req: Request, res: Response) => {
   }
 
   return res.status(StatusCodes.OK).send(createResponse(top3Musics));
+};
+
+export const getPlayList = (req: Request, res: Response) => {
+  const playlist = musicService.findPlayList();
+
+  if (!playlist) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .send(createError(MUSICS_ERRORS.PLAYLIST_NOT_FOUND));
+  }
+
+  return res.status(StatusCodes.OK).send(createResponse(playlist));
 };
 
 export const addPlayList = (req: Request, res: Response) => {
