@@ -1,6 +1,6 @@
-import { useCallback } from 'react';
-import { useRouter } from 'next/router';
+import { useState, useCallback } from 'react';
 import { Toast, MusicController } from '@/components';
+import { useAudio } from '@/hooks';
 import {
   useTop3Musics,
   useAddPlayList,
@@ -17,7 +17,8 @@ import { TOAST_DURATION } from './constants';
 import * as Styled from './styled';
 
 const Top3PlayList = () => {
-  const router = useRouter();
+  const [musicSrc, setMusicSrc] = useState('');
+  const [playing, playToggle] = useAudio(musicSrc);
   const { data: musics } = useTop3Musics();
   const { mutateAsync: addPlayList, isLoading: addPlayListLoading } =
     useAddPlayList();
@@ -25,12 +26,14 @@ const Top3PlayList = () => {
     useDeletePlayList();
 
   const handleCotrollerPlayClick = useCallback(
-    async (id: string) => {
-      router.push({
-        pathname: `/play/${id}`,
-      });
+    (source: string) => {
+      if (source !== musicSrc) {
+        setMusicSrc(() => source);
+      } else {
+        playToggle();
+      }
     },
-    [router],
+    [musicSrc, playToggle],
   );
 
   const handleControllerAddClick = useCallback(
@@ -51,46 +54,48 @@ const Top3PlayList = () => {
 
   return (
     <Styled.Container>
-      {musics?.map(({ id, cover, title, artists, hasPlaylist }, index) => (
-        <Styled.ItemContainer key={id}>
-          <MusicScore score={index + 1} />
+      {musics?.map(
+        ({ id, cover, title, artists, source, hasPlaylist }, index) => (
+          <Styled.ItemContainer key={id}>
+            <MusicScore score={index + 1} />
 
-          <Styled.ContentsAndControllerContainer>
-            <Styled.ContentsContainer>
-              <MusicCover cover={cover} width={50} height={50} />
+            <Styled.ContentsAndControllerContainer>
+              <Styled.ContentsContainer>
+                <MusicCover cover={cover} width={50} height={50} />
 
-              <Styled.TitleAndArtistsContainer>
-                <MusicTitle title={title} />
-                <MusicArtists artists={artists} />
-              </Styled.TitleAndArtistsContainer>
-            </Styled.ContentsContainer>
+                <Styled.TitleAndArtistsContainer>
+                  <MusicTitle title={title} />
+                  <MusicArtists artists={artists} />
+                </Styled.TitleAndArtistsContainer>
+              </Styled.ContentsContainer>
 
-            <Styled.ControllerContainer>
-              <MusicController
-                mode="play"
-                size="small"
-                onClick={() => handleCotrollerPlayClick(id)}
-              />
-
-              {hasPlaylist ? (
+              <Styled.ControllerContainer>
                 <MusicController
-                  mode="minus"
+                  mode={musicSrc === source && playing ? 'pause' : 'play'}
                   size="small"
-                  disabled={deletePlayListLoading}
-                  onClick={() => handleControllerDeleteClick(id)}
+                  onClick={() => handleCotrollerPlayClick(source)}
                 />
-              ) : (
-                <MusicController
-                  mode="plus"
-                  size="small"
-                  disabled={addPlayListLoading}
-                  onClick={() => handleControllerAddClick(id)}
-                />
-              )}
-            </Styled.ControllerContainer>
-          </Styled.ContentsAndControllerContainer>
-        </Styled.ItemContainer>
-      ))}
+
+                {hasPlaylist ? (
+                  <MusicController
+                    mode="minus"
+                    size="small"
+                    disabled={deletePlayListLoading}
+                    onClick={() => handleControllerDeleteClick(id)}
+                  />
+                ) : (
+                  <MusicController
+                    mode="plus"
+                    size="small"
+                    disabled={addPlayListLoading}
+                    onClick={() => handleControllerAddClick(id)}
+                  />
+                )}
+              </Styled.ControllerContainer>
+            </Styled.ContentsAndControllerContainer>
+          </Styled.ItemContainer>
+        ),
+      )}
     </Styled.Container>
   );
 };
