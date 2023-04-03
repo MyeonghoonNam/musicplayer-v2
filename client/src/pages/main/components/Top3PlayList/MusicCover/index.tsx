@@ -4,16 +4,18 @@ import * as Styled from './styled';
 
 interface Props {
   cover: string;
+  width: number;
+  height: number;
 }
 
-const MusicCover = ({ cover }: Props) => {
+const MusicCover = ({ cover, width, height }: Props) => {
   return (
     <Styled.Container>
       <Image
         src={cover}
         alt="cover"
-        width={50}
-        height={50}
+        width={width}
+        height={height}
         className="inline-block rounded-[5px] mr-[16px]"
         priority
       />

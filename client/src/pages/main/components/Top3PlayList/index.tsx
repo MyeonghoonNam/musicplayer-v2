@@ -43,7 +43,7 @@ const Top3PlayList = () => {
 
           <Styled.ContentsAndControllerContainer>
             <Styled.ContentsContainer>
-              <MusicCover cover={cover} />
+              <MusicCover cover={cover} width={50} height={50} />
 
               <Styled.TitleAndArtistsContainer>
                 <MusicTitle title={title} />
