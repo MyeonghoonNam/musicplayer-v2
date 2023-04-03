@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { useRouter } from 'next/router';
 import { Toast, MusicController } from '@/components';
 import {
   useTop3Musics,
@@ -16,11 +17,21 @@ import { TOAST_DURATION } from './constants';
 import * as Styled from './styled';
 
 const Top3PlayList = () => {
+  const router = useRouter();
   const { data: musics } = useTop3Musics();
   const { mutateAsync: addPlayList, isLoading: addPlayListLoading } =
     useAddPlayList();
   const { mutateAsync: deletePlayList, isLoading: deletePlayListLoading } =
     useDeletePlayList();
+
+  const handleCotrollerPlayClick = useCallback(
+    async (id: string) => {
+      router.push({
+        pathname: `/play/${id}`,
+      });
+    },
+    [router],
+  );
 
   const handleControllerAddClick = useCallback(
     async (id: string) => {
@@ -58,7 +69,7 @@ const Top3PlayList = () => {
               <MusicController
                 mode="play"
                 size="small"
-                onClick={() => handleControllerAddClick(id)}
+                onClick={() => handleCotrollerPlayClick(id)}
               />
 
               {hasPlaylist ? (
