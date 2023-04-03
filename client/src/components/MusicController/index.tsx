@@ -10,7 +10,7 @@ import type { MusicControllerMode, MusicControllerSize } from './types';
 interface Props {
   mode: MusicControllerMode;
   size: MusicControllerSize;
-  onClick?: () => Promise<void>;
+  onClick?: () => Promise<void> | void;
   disabled?: boolean;
 }
 

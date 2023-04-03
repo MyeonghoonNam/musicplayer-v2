@@ -3,6 +3,10 @@ export const MUSIC_CONTROLLER_IMAGE_MAP = {
     src: '/icons/play.png',
     alt: 'play',
   },
+  pause: {
+    src: '/icons/pause.png',
+    alt: 'pause',
+  },
   plus: {
     src: '/icons/plus.png',
     alt: 'plus',

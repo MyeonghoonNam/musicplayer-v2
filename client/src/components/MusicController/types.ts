@@ -1,5 +1,6 @@
 export type MusicControllerMode =
   | 'play'
+  | 'pause'
   | 'plus'
   | 'minus'
   | 'top3_on'
