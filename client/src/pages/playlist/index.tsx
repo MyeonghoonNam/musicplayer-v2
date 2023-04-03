@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import { ReactElement } from 'react';
 import { TabMenuLayout } from '@/components';
-import { Title } from './components';
+import { Title, PlayList } from './components';
 
 import * as Styled from './styled';
 
-const PlayList = () => {
+const PlayListPage = () => {
   return (
     <>
       <Head>
@@ -16,13 +16,14 @@ const PlayList = () => {
 
       <Styled.Container>
         <Title />
+        <PlayList />
       </Styled.Container>
     </>
   );
 };
 
-PlayList.getLayout = (page: ReactElement) => {
+PlayListPage.getLayout = (page: ReactElement) => {
   return <TabMenuLayout>{page}</TabMenuLayout>;
 };
 
-export default PlayList;
+export default PlayListPage;
