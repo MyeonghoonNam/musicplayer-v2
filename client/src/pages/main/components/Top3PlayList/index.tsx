@@ -1,6 +1,10 @@
 import { useCallback } from 'react';
 import { Toast, MusicController } from '@/components';
-import { useTop3Musics, useAddPlayList } from '@/pages/main/hooks';
+import {
+  useTop3Musics,
+  useAddPlayList,
+  useDeletePlayList,
+} from '@/pages/main/hooks';
 
 import MusicScore from './MusicScore';
 import MusicCover from './MusicCover';
@@ -10,7 +14,6 @@ import MusicArtists from './MusicArtists';
 import { TOAST_DURATION } from './constants';
 
 import * as Styled from './styled';
-import useDeletePlayList from '../../hooks/useDeletePlayList';
 
 const Top3PlayList = () => {
   const { data: musics } = useTop3Musics();
