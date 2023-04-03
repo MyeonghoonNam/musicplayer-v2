@@ -71,7 +71,8 @@
     "import/prefer-default-export": "off",
     "react/jsx-no-useless-fragment": "off",
     "react/display-name": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "no-unused-expressions": "off"
   },
   "settings": {
     "import/resolver": {
