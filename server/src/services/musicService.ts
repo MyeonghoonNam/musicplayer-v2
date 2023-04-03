@@ -5,6 +5,10 @@ export const findMusic = (id: string) => {
   return db.data?.musics.find((music) => music.id === id);
 };
 
+export const findPlayList = () => {
+  return db.data?.playlist;
+};
+
 export const findPlayListMusic = (id: string) => {
   return db.data?.playlist.find((music) => music.id === id);
 };
