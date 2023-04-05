@@ -5,5 +5,5 @@ interface Props {
 }
 
 export const Container = ({ children }: Props) => {
-  return <em>{children}</em>;
+  return <em className="px-[1px] truncate">{children}</em>;
 };
