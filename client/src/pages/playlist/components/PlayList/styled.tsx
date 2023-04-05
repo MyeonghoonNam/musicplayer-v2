@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ReactNode } from 'react';
 
 interface Props {
@@ -16,8 +17,15 @@ export const ItemContainer = ({ children }: Props) => {
   );
 };
 
-export const ContentsContainer = ({ children }: Props) => {
-  return <div className="flex">{children}</div>;
+export const ContentsContainer = ({
+  children,
+  path,
+}: Props & { path: string }) => {
+  return (
+    <Link href={`/play/${path}`} className="flex">
+      {children}
+    </Link>
+  );
 };
 
 export const TitleAndArtistsContainer = ({ children }: Props) => {

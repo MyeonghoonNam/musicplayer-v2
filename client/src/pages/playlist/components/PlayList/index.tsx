@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
 import { MusicController, Toast } from '@/components';
-
 import { usePlayList, useDeletePlayList } from '../../hooks';
 
 import MusicArtists from './MusicArtists';
@@ -12,6 +11,7 @@ import * as Styled from './styled';
 const PlayList = () => {
   const { data: playlist } = usePlayList();
   const { mutateAsync: deletePlayList } = useDeletePlayList();
+
   const handleDeletePlayListClick = useCallback(
     async (id: string) => {
       await deletePlayList(id);
@@ -24,7 +24,7 @@ const PlayList = () => {
     <Styled.Container>
       {playlist?.map(({ id, cover, title, artists }) => (
         <Styled.ItemContainer key={id}>
-          <Styled.ContentsContainer>
+          <Styled.ContentsContainer path={id}>
             <MusicCover
               cover={cover}
               alt="music-cover"
