@@ -1,12 +1,9 @@
 import Head from 'next/head';
 import { ReactElement } from 'react';
-import { useRouter } from 'next/router';
 
 import { RootLayout } from '@/components';
 
 const PlayPage = () => {
-  const router = useRouter();
-  console.log(router.query);
   return (
     <>
       <Head>
