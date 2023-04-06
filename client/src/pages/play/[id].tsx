@@ -1,7 +1,10 @@
 import Head from 'next/head';
 import { ReactElement } from 'react';
-
 import { RootLayout } from '@/components';
+
+import { BackButton } from './components';
+
+import * as Styled from './styled';
 
 const PlayPage = () => {
   return (
@@ -12,7 +15,9 @@ const PlayPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div>init play page</div>
+      <Styled.Container>
+        <BackButton />
+      </Styled.Container>
     </>
   );
 };
