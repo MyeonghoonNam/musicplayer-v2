@@ -1,12 +1,17 @@
 import Head from 'next/head';
 import { ReactElement } from 'react';
+import { useRouter } from 'next/router';
 import { RootLayout } from '@/components';
 
 import { BackButton } from './components';
 
 import * as Styled from './styled';
+import { usePlayMusic } from './hooks';
 
 const PlayPage = () => {
+  const { query } = useRouter();
+  const { data: music } = usePlayMusic(query.id as string);
+
   return (
     <>
       <Head>
