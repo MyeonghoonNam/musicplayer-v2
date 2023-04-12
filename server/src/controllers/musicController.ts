@@ -29,6 +29,27 @@ export const getPlayList = (req: Request, res: Response) => {
   return res.status(StatusCodes.OK).send(createResponse(playlist));
 };
 
+export const getPlayMusic = (req: Request, res: Response) => {
+  const { id: musicId } = req.params;
+  console.log(musicId);
+
+  if (!musicId) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .send(createError(MUSICS_ERRORS.INVALID_MUSIC_ID));
+  }
+
+  const playMusic = musicService.findPlayListMusic(musicId);
+
+  if (!playMusic) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .send(createError(MUSICS_ERRORS.EXIST_PLAYLIST_MUSIC));
+  }
+
+  return res.status(StatusCodes.OK).send(createResponse(playMusic));
+};
+
 export const addPlayList = (req: Request, res: Response) => {
   const { id: musicId } = req.params;
 
