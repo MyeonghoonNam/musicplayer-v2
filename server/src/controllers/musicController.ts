@@ -31,7 +31,6 @@ export const getPlayList = (req: Request, res: Response) => {
 
 export const getPlayMusic = (req: Request, res: Response) => {
   const { id: musicId } = req.params;
-  console.log(musicId);
 
   if (!musicId) {
     return res
