@@ -3,14 +3,16 @@ import { ReactElement } from 'react';
 import { useRouter } from 'next/router';
 import { RootLayout } from '@/components';
 
-import { BackButton } from './components';
+import { BackButton, MusicCover } from './components';
+import { usePlayMusic } from './hooks';
 
 import * as Styled from './styled';
-import { usePlayMusic } from './hooks';
 
 const PlayPage = () => {
   const { query } = useRouter();
   const { data: music } = usePlayMusic(query.id as string);
+
+  if (!music) return null;
 
   return (
     <>
@@ -22,6 +24,7 @@ const PlayPage = () => {
 
       <Styled.Container>
         <BackButton />
+        <MusicCover source={music.cover} />
       </Styled.Container>
     </>
   );
