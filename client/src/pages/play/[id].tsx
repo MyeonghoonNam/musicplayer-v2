@@ -3,7 +3,7 @@ import { ReactElement } from 'react';
 import { useRouter } from 'next/router';
 import { RootLayout } from '@/components';
 
-import { BackButton, MusicCover } from './components';
+import { BackButton, MusicCover, MusicTitle } from './components';
 import { usePlayMusic } from './hooks';
 
 import * as Styled from './styled';
@@ -25,6 +25,10 @@ const PlayPage = () => {
       <Styled.Container>
         <BackButton />
         <MusicCover source={music.cover} />
+
+        <Styled.Contents>
+          <MusicTitle title={music.title} />
+        </Styled.Contents>
       </Styled.Container>
     </>
   );
