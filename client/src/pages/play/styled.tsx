@@ -12,6 +12,6 @@ export const Container = ({ children }: Props) => {
   );
 };
 
-export const Contents = ({ children }: Props) => {
+export const ContentsContainer = ({ children }: Props) => {
   return <div className="flex flex-col justify-center">{children}</div>;
 };

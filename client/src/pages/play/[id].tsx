@@ -26,10 +26,12 @@ const PlayPage = () => {
         <BackButton />
         <MusicCover source={music.cover} />
 
-        <Styled.Contents>
+        <Styled.ContentsContainer>
           <MusicTitle title={music.title} />
           <MusicArtists artists={music.artists} />
-        </Styled.Contents>
+        </Styled.ContentsContainer>
+
+        {/* Styled.ControllerContainer */}
       </Styled.Container>
     </>
   );
