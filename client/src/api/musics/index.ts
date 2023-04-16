@@ -15,4 +15,4 @@ export const deletePlayList = async (id: string) => {
 export const getPlayList = () => config.get<Music[]>(`${RESOURCE}/playlist`);
 
 export const getPlayMusic = (id: string) =>
-  config.get<Music>(`${RESOURCE}/playlist/${id}`);
+  config.get<Music>(`${RESOURCE}/play/${id}`);
