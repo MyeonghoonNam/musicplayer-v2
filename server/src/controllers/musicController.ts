@@ -32,7 +32,7 @@ export const getPlayList = (req: Request, res: Response) => {
 export const getPlayMusic = (req: Request, res: Response) => {
   const { id: musicId } = req.params;
 
-  if (!musicId) {
+  if (musicId === 'undefined' || !musicId) {
     return res
       .status(StatusCodes.BAD_REQUEST)
       .send(createError(MUSICS_ERRORS.INVALID_MUSIC_ID));
