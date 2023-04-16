@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { ReactElement } from 'react';
 import { useRouter } from 'next/router';
-import { RootLayout } from '@/components';
+import { MusicController, RootLayout } from '@/components';
 
 import { BackButton, MusicArtists, MusicCover, MusicTitle } from './components';
 import { usePlayMusic } from './hooks';
@@ -31,7 +31,13 @@ const PlayPage = () => {
           <MusicArtists artists={music.artists} />
         </Styled.ContentsContainer>
 
-        {/* Styled.ControllerContainer */}
+        <Styled.ControllerContainer>
+          <MusicController mode="repeat_off" size="middle" />
+          <MusicController mode="backward" size="middle" />
+          <MusicController mode="play" size="big" />
+          <MusicController mode="forward" size="middle" />
+          <MusicController mode="rotate_off" size="middle" />
+        </Styled.ControllerContainer>
       </Styled.Container>
     </>
   );

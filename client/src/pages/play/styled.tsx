@@ -15,3 +15,7 @@ export const Container = ({ children }: Props) => {
 export const ContentsContainer = ({ children }: Props) => {
   return <div className="flex flex-col justify-center">{children}</div>;
 };
+
+export const ControllerContainer = ({ children }: Props) => {
+  return <div className="flex justify-between mt-[60px]">{children}</div>;
+};
