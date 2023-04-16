@@ -8,6 +8,12 @@ export type MusicControllerMode =
   | 'playlist_on'
   | 'playlist_off'
   | 'search_on'
-  | 'search_off';
+  | 'search_off'
+  | 'repeat_on'
+  | 'repeat_off'
+  | 'backward'
+  | 'forward'
+  | 'rotate_on'
+  | 'rotate_off';
 
 export type MusicControllerSize = 'small' | 'middle' | 'big';

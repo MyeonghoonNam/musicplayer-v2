@@ -43,6 +43,30 @@ export const MUSIC_CONTROLLER_IMAGE_MAP = {
     src: '/icons/tiny_search.png',
     alt: 'search_input',
   },
+  repeat_on: {
+    src: '/icons/repeat_on.png',
+    alt: 'repeat_on',
+  },
+  repeat_off: {
+    src: '/icons/repeat.png',
+    alt: 'repeat_off',
+  },
+  backward: {
+    src: '/icons/backward.png',
+    alt: 'backward',
+  },
+  forward: {
+    src: '/icons/forward.png',
+    alt: 'forward',
+  },
+  rotate_on: {
+    src: '/icons/rotate-ccw_on.png',
+    alt: 'rotate_on',
+  },
+  rotate_off: {
+    src: '/icons/rotate-ccw.png',
+    alt: 'rotate_off',
+  },
 };
 
 export const MUSIC_CONTROLLER_SIZE_MAP = {
