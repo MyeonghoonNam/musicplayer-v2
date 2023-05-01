@@ -1,6 +1,9 @@
 import Head from 'next/head';
 import { ReactElement } from 'react';
 import { TabMenuLayout } from '@/components';
+import { SearchBar } from './components';
+
+import * as Styled from './styled';
 
 const SearchPage = () => {
   return (
@@ -11,7 +14,10 @@ const SearchPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div>init search</div>
+      <Styled.Container>
+        <SearchBar />
+        {/* SearchList */}
+      </Styled.Container>
     </>
   );
 };
