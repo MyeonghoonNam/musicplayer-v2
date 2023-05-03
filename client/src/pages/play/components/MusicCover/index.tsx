@@ -15,6 +15,7 @@ const MusicCover = ({ source }: Props) => {
         className="w-full h-full object-cover"
         width={292}
         height={292}
+        style={{ width: '100%', height: 'auto' }}
         priority
       />
     </Styled.Container>
