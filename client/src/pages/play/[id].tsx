@@ -1,9 +1,10 @@
 import Head from 'next/head';
-import { ReactElement } from 'react';
+import { ReactElement, useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
 import { MusicController, RootLayout } from '@/components';
 
 import { BackButton, MusicArtists, MusicCover, MusicTitle } from './components';
+import { useAudio } from '@/hooks';
 import { usePlayMusic } from './hooks';
 
 import * as Styled from './styled';
@@ -11,6 +12,18 @@ import * as Styled from './styled';
 const PlayPage = () => {
   const { query } = useRouter();
   const { data: music } = usePlayMusic(query.id as string);
+  const [musicSrc, setMusicSrc] = useState('');
+  const [playing, playToggle] = useAudio(musicSrc);
+
+  const handlePlayClick = useCallback(() => {
+    if (!music) return;
+
+    if (!musicSrc) {
+      setMusicSrc(() => music.source);
+    } else {
+      playToggle();
+    }
+  }, [music, musicSrc, playToggle]);
 
   if (!music) return null;
 
@@ -34,7 +47,11 @@ const PlayPage = () => {
         <Styled.ControllerContainer>
           <MusicController mode="repeat_off" size="middle" />
           <MusicController mode="backward" size="middle" />
-          <MusicController mode="play" size="big" />
+          <MusicController
+            mode={playing ? 'pause' : 'play'}
+            size="big"
+            onClick={handlePlayClick}
+          />
           <MusicController mode="forward" size="middle" />
           <MusicController mode="rotate_off" size="middle" />
         </Styled.ControllerContainer>
