@@ -24,17 +24,21 @@ const useAudio = (url: string): ReturnType => {
 
   useEffect(() => {
     if (!url) return;
+
     playing ? audio.play() : audio.pause();
   }, [playing]);
 
   useEffect(() => {
     if (!url) return;
 
+    const endListener = () => setPlaying(false);
+
     setPlaying(true);
-    audio.addEventListener('ended', () => setPlaying(false));
+    audio.addEventListener('ended', endListener);
 
     return () => {
-      audio.removeEventListener('ended', () => setPlaying(false));
+      audio.pause();
+      audio.removeEventListener('ended', endListener);
     };
   }, [audio]);
 
