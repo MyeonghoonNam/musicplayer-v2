@@ -4,7 +4,9 @@ import { musicCache } from '@/models';
 import { getPlayMusic } from '@/api/musics';
 
 const usePlayMusic = (id: string) => {
-  const query = useQuery(musicCache.getPlayMusic, () => getPlayMusic(id));
+  const query = useQuery(musicCache.getPlayMusic, () => getPlayMusic(id), {
+    enabled: !!id,
+  });
 
   return query;
 };
