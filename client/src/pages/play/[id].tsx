@@ -1,30 +1,35 @@
 import Head from 'next/head';
-import { ReactElement, useCallback, useState } from 'react';
+import { ReactElement, useCallback } from 'react';
 import { useRouter } from 'next/router';
+
 import { MusicController, RootLayout } from '@/components';
+import { useAudio } from '@/hooks';
 
 import { BackButton, MusicArtists, MusicCover, MusicTitle } from './components';
-import { useAudio } from '@/hooks';
 import { usePlayMusic } from './hooks';
 
 import * as Styled from './styled';
 
 const PlayPage = () => {
   const router = useRouter();
-
   const { data: music } = usePlayMusic(router.query.id as string);
-  const [musicSrc, setMusicSrc] = useState('');
-  const [playing, playToggle] = useAudio(musicSrc);
+  const [playing, playToggle] = useAudio(music?.source as string);
 
   const handlePlayClick = useCallback(() => {
-    if (!music) return;
+    playToggle();
+  }, [playToggle]);
 
-    if (!musicSrc) {
-      setMusicSrc(() => music.source);
-    } else {
-      playToggle();
+  const handleNextClick = useCallback(() => {
+    if (music) {
+      router.replace(`${music.nextId}`);
     }
-  }, [music, musicSrc, playToggle]);
+  }, [router, music]);
+
+  const handlePrevClick = useCallback(() => {
+    if (music) {
+      router.replace(`${music.prevId}`);
+    }
+  }, [router, music]);
 
   const handleBackClick = useCallback(() => {
     router.back();
@@ -51,13 +56,21 @@ const PlayPage = () => {
 
         <Styled.ControllerContainer>
           <MusicController mode="repeat_off" size="middle" />
-          <MusicController mode="backward" size="middle" />
+          <MusicController
+            mode="backward"
+            size="middle"
+            onClick={handlePrevClick}
+          />
           <MusicController
             mode={playing ? 'pause' : 'play'}
             size="big"
             onClick={handlePlayClick}
           />
-          <MusicController mode="forward" size="middle" />
+          <MusicController
+            mode="forward"
+            size="middle"
+            onClick={handleNextClick}
+          />
           <MusicController mode="rotate_off" size="middle" />
         </Styled.ControllerContainer>
       </Styled.Container>
