@@ -25,7 +25,20 @@ export const findTop3Musics = () => {
 };
 
 export const addPlayList = async (music: Music) => {
-  db.data?.playlist.push(create<Music>(music));
+  const playlist = db.data?.playlist;
+
+  if (playlist) {
+    const newMusic = create<Music>(music);
+
+    newMusic.nextId = playlist[0]?.id;
+    newMusic.prevId = playlist[playlist.length - 1]?.id;
+
+    playlist.push(newMusic);
+
+    playlist[playlist.length - 1].nextId = newMusic.id;
+    playlist[0].prevId = newMusic.id;
+  }
+
   await db.write();
 
   return music;
