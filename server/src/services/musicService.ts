@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { db, create } from '../models/db';
 import type { Music } from '../interfaces/musics';
 
@@ -30,13 +31,21 @@ export const addPlayList = async (music: Music) => {
   if (playlist) {
     const newMusic = create<Music>(music);
 
-    newMusic.nextId = playlist[0]?.id;
-    newMusic.prevId = playlist[playlist.length - 1]?.id;
+    if (playlist.length === 0) {
+      newMusic.prevId = newMusic.id;
+      newMusic.nextId = newMusic.id;
+    } else {
+      const prevMusic = playlist[playlist.length - 1];
+      const nextMusic = playlist[0];
+
+      newMusic.prevId = prevMusic.id;
+      newMusic.nextId = nextMusic.id;
+
+      prevMusic.nextId = newMusic.id;
+      nextMusic.prevId = newMusic.id;
+    }
 
     playlist.push(newMusic);
-
-    playlist[playlist.length - 1].nextId = newMusic.id;
-    playlist[0].prevId = newMusic.id;
   }
 
   await db.write();
@@ -45,7 +54,17 @@ export const addPlayList = async (music: Music) => {
 };
 
 export const deletePlayList = async (music: Music) => {
-  const filterdPlaylist = db.data?.playlist.filter(({ id }) => id !== music.id);
+  const filterdPlaylist = db.data?.playlist.filter((m, i, arr) => {
+    if (m.id === music.id) {
+      const prevMusic = arr[i - 1] ? arr[i - 1] : arr[arr.length - 1];
+      const nextMusic = arr[i + 1] ? arr[i + 1] : arr[0];
+
+      prevMusic.nextId = nextMusic.id;
+      nextMusic.prevId = prevMusic.id;
+    }
+
+    return m.id !== music.id;
+  });
 
   if (filterdPlaylist && db.data) {
     db.data.playlist = filterdPlaylist;
