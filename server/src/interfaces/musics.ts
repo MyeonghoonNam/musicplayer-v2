@@ -6,4 +6,6 @@ export interface Music {
   source: string;
   vote: number;
   hasPlaylist?: boolean;
+  nextId?: string;
+  prevId?: string;
 }
