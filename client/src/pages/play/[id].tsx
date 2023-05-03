@@ -10,8 +10,9 @@ import { usePlayMusic } from './hooks';
 import * as Styled from './styled';
 
 const PlayPage = () => {
-  const { query } = useRouter();
-  const { data: music } = usePlayMusic(query.id as string);
+  const router = useRouter();
+
+  const { data: music } = usePlayMusic(router.query.id as string);
   const [musicSrc, setMusicSrc] = useState('');
   const [playing, playToggle] = useAudio(musicSrc);
 
@@ -25,6 +26,10 @@ const PlayPage = () => {
     }
   }, [music, musicSrc, playToggle]);
 
+  const handleBackClick = useCallback(() => {
+    router.back();
+  }, [router]);
+
   if (!music) return null;
 
   return (
@@ -36,7 +41,7 @@ const PlayPage = () => {
       </Head>
 
       <Styled.Container>
-        <BackButton />
+        <BackButton onClick={handleBackClick} />
         <MusicCover source={music.cover} />
 
         <Styled.ContentsContainer>

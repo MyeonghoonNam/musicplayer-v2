@@ -1,18 +1,14 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useCallback } from 'react';
 
 import * as Styled from './styled';
 
-const BackButton = () => {
-  const router = useRouter();
+interface Props {
+  onClick: () => void;
+}
 
-  const handleClick = useCallback(() => {
-    router.back();
-  }, [router]);
-
+const BackButton = ({ onClick }: Props) => {
   return (
-    <Styled.Container onClick={handleClick}>
+    <Styled.Container onClick={onClick}>
       <Image
         src="/icons/arrow-left.png"
         alt="back-button"
