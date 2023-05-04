@@ -5,7 +5,13 @@ import { useRouter } from 'next/router';
 import { MusicController, RootLayout } from '@/components';
 import { useAudio } from '@/hooks';
 
-import { BackButton, MusicArtists, MusicCover, MusicTitle } from './components';
+import {
+  BackButton,
+  MusicArtists,
+  MusicCover,
+  MusicTitle,
+  ProgressBar,
+} from './components';
 import { usePlayMusic } from './hooks';
 
 import * as Styled from './styled';
@@ -13,7 +19,7 @@ import * as Styled from './styled';
 const PlayPage = () => {
   const router = useRouter();
   const { data: music } = usePlayMusic(router.query.id as string);
-  const [playing, playToggle] = useAudio(music?.source as string);
+  const [playing, playToggle, value] = useAudio(music?.source as string);
 
   const handlePlayClick = useCallback(() => {
     playToggle();
@@ -73,6 +79,11 @@ const PlayPage = () => {
           />
           <MusicController mode="rotate_off" size="middle" />
         </Styled.ControllerContainer>
+
+        <Styled.ProgressBarContainer>
+          <ProgressBar value={value} />
+          {/* ProgressTime */}
+        </Styled.ProgressBarContainer>
       </Styled.Container>
     </>
   );

@@ -1,1 +1,1 @@
-export type ReturnType = [boolean, () => void];
+export type ReturnType = [boolean, () => void, number];
