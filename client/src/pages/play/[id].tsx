@@ -11,6 +11,7 @@ import {
   MusicCover,
   MusicTitle,
   ProgressBar,
+  ProgressTime,
 } from './components';
 import { usePlayMusic } from './hooks';
 
@@ -19,7 +20,9 @@ import * as Styled from './styled';
 const PlayPage = () => {
   const router = useRouter();
   const { data: music } = usePlayMusic(router.query.id as string);
-  const [playing, playToggle, value] = useAudio(music?.source as string);
+  const [playing, playToggle, value, currentTime, endTime] = useAudio(
+    music?.source as string,
+  );
 
   const handlePlayClick = useCallback(() => {
     playToggle();
@@ -82,7 +85,7 @@ const PlayPage = () => {
 
         <Styled.ProgressBarContainer>
           <ProgressBar value={value} />
-          {/* ProgressTime */}
+          <ProgressTime currentTime={currentTime} endTime={endTime} />
         </Styled.ProgressBarContainer>
       </Styled.Container>
     </>
