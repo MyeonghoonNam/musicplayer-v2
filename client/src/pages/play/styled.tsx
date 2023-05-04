@@ -19,3 +19,7 @@ export const ContentsContainer = ({ children }: Props) => {
 export const ControllerContainer = ({ children }: Props) => {
   return <div className="flex justify-between mt-[60px]">{children}</div>;
 };
+
+export const ProgressBarContainer = ({ children }: Props) => {
+  return <div className="mt-[20px]">{children}</div>;
+};
