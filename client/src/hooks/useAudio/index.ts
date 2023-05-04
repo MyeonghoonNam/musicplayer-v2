@@ -9,6 +9,8 @@ const useAudio = (url: string): ReturnType => {
   const [playing, setPlaying] = useState(false);
   const [intervaler, setIntervaler] = useState(0);
   const [value, setValue] = useState(0);
+  const [currentTime, setCurrentTime] = useState('');
+  const [endTime, setEndTime] = useState('');
 
   const playToggle = useCallback(() => {
     setPlaying((prev) => !prev);
@@ -37,10 +39,41 @@ const useAudio = (url: string): ReturnType => {
     const timeUpdateListener = () => {
       if (intervaler % 3 !== 0) return;
 
-      const audioProgress = (audio.currentTime / audio.duration) * 100;
-      const controlProgress = audioProgress > 100 ? 100 : audioProgress;
+      const getControlProgress = () => {
+        const audioProgress = (audio.currentTime / audio.duration) * 100;
+        const controlProgress = audioProgress > 100 ? 100 : audioProgress;
 
-      setValue(() => (controlProgress ? controlProgress * 10 : 0));
+        return controlProgress ? controlProgress * 10 : 0;
+      };
+
+      const getCurrentTime = () => {
+        const currentMinute = String(Math.floor((audio.currentTime / 60) % 60));
+        let currentSecond = String(Math.floor(audio.currentTime % 60));
+
+        if (Number(currentSecond) < 10) {
+          currentSecond = `0${currentSecond}`;
+        }
+
+        return `${currentMinute}:${currentSecond}`;
+      };
+
+      const getEndTime = () => {
+        const totalTime = audio.duration;
+        const endMinute = String(Math.floor(totalTime / 60));
+        let endSecond = String(Math.floor(totalTime % 60));
+
+        if (Number(endSecond) < 10) {
+          endSecond = `0${endSecond}`;
+        }
+        console.log(totalTime, 'total time');
+        console.log(endMinute, 'endminute');
+        console.log(endSecond, 'endsecond');
+        return `${endMinute}:${endSecond}`;
+      };
+
+      setValue(() => getControlProgress());
+      setCurrentTime(() => getCurrentTime());
+      setEndTime(() => getEndTime());
     };
 
     const endedListener = () => setPlaying(false);
@@ -61,7 +94,7 @@ const useAudio = (url: string): ReturnType => {
     setIntervaler((prev: number) => prev + 1);
   }, 1000);
 
-  return [playing, playToggle, value];
+  return [playing, playToggle, value, currentTime, endTime];
 };
 
 export default useAudio;
