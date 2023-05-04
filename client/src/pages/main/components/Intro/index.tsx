@@ -1,15 +1,15 @@
 import Image from 'next/image';
 import tw from 'twin.macro';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
+import { useTimeout } from '@/hooks';
 
 const Intro = () => {
   const [show, setShow] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setShow(false);
-    }, 1000);
-  }, []);
+  useTimeout(() => {
+    setShow(false);
+  }, 1000);
 
   return (
     <div
