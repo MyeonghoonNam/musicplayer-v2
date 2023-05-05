@@ -6,9 +6,8 @@ import type { ReturnType } from './types';
 const useAudio = (url: string): ReturnType => {
   const [audio, setAudio] = useState(new Audio(url));
   const [playing, setPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [currentTime, setCurrentTime] = useState('');
-  const [endTime, setEndTime] = useState('');
+  const [currentTime, setCurrentTime] = useState(0);
+  const [endTime, setEndTime] = useState(0);
 
   const playToggle = useCallback(() => {
     setPlaying((prev) => !prev);
@@ -35,44 +34,15 @@ const useAudio = (url: string): ReturnType => {
     if (!url) return;
 
     const timeUpdateListener = () => {
-      const getControlProgress = () => {
-        const audioProgress = (audio.currentTime / audio.duration) * 100;
-        const controlProgress = audioProgress > 100 ? 100 : audioProgress;
-
-        return controlProgress ? controlProgress * 10 : 0;
-      };
-
-      const getCurrentTime = () => {
-        const currentMinute = String(Math.floor((audio.currentTime / 60) % 60));
-        let currentSecond = String(Math.floor(audio.currentTime % 60));
-
-        if (Number(currentSecond) < 10) {
-          currentSecond = `0${currentSecond}`;
-        }
-
-        return `${currentMinute}:${currentSecond}`;
-      };
-
-      const getEndTime = () => {
-        const totalTime = audio.duration;
-        const endMinute = String(Math.floor(totalTime / 60));
-        let endSecond = String(Math.floor(totalTime % 60));
-
-        if (Number(endSecond) < 10) {
-          endSecond = `0${endSecond}`;
-        }
-
-        return `${endMinute}:${endSecond}`;
-      };
-
-      setProgress(() => getControlProgress());
-      setCurrentTime(() => getCurrentTime());
-      setEndTime(() => getEndTime());
+      setCurrentTime(() => audio.currentTime);
+      setEndTime(() => audio.duration);
     };
 
     const endedListener = () => setPlaying(false);
 
     setPlaying(true);
+    setCurrentTime(0);
+    setEndTime(0);
 
     audio.addEventListener('timeupdate', timeUpdateListener);
     audio.addEventListener('ended', endedListener);
@@ -84,7 +54,7 @@ const useAudio = (url: string): ReturnType => {
     };
   }, [audio]);
 
-  return [playing, playToggle, progress, currentTime, endTime];
+  return [playing, playToggle, currentTime, setCurrentTime, endTime];
 };
 
 export default useAudio;
