@@ -1,14 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useState } from 'react';
-import useInterval from '../useInterval';
 
 import type { ReturnType } from './types';
 
 const useAudio = (url: string): ReturnType => {
   const [audio, setAudio] = useState(new Audio(url));
   const [playing, setPlaying] = useState(false);
-  const [intervaler, setIntervaler] = useState(0);
-  const [value, setValue] = useState(0);
+  const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState('');
   const [endTime, setEndTime] = useState('');
 
@@ -37,8 +35,6 @@ const useAudio = (url: string): ReturnType => {
     if (!url) return;
 
     const timeUpdateListener = () => {
-      if (intervaler % 3 !== 0) return;
-
       const getControlProgress = () => {
         const audioProgress = (audio.currentTime / audio.duration) * 100;
         const controlProgress = audioProgress > 100 ? 100 : audioProgress;
@@ -65,13 +61,11 @@ const useAudio = (url: string): ReturnType => {
         if (Number(endSecond) < 10) {
           endSecond = `0${endSecond}`;
         }
-        console.log(totalTime, 'total time');
-        console.log(endMinute, 'endminute');
-        console.log(endSecond, 'endsecond');
+
         return `${endMinute}:${endSecond}`;
       };
 
-      setValue(() => getControlProgress());
+      setProgress(() => getControlProgress());
       setCurrentTime(() => getCurrentTime());
       setEndTime(() => getEndTime());
     };
@@ -90,11 +84,7 @@ const useAudio = (url: string): ReturnType => {
     };
   }, [audio]);
 
-  useInterval(() => {
-    setIntervaler((prev: number) => prev + 1);
-  }, 1000);
-
-  return [playing, playToggle, value, currentTime, endTime];
+  return [playing, playToggle, progress, currentTime, endTime];
 };
 
 export default useAudio;
