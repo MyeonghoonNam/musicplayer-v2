@@ -4,6 +4,11 @@ import { useRouter } from 'next/router';
 
 import { MusicController, RootLayout } from '@/components';
 import { useAudio } from '@/hooks';
+import {
+  getControlProgress,
+  getCurrentTimeToString,
+  getEndTimeToString,
+} from '@/utils';
 
 import {
   BackButton,
@@ -20,7 +25,8 @@ import * as Styled from './styled';
 const PlayPage = () => {
   const router = useRouter();
   const { data: music } = usePlayMusic(router.query.id as string);
-  const [playing, playToggle, progress, currentTime, endTime] = useAudio(
+
+  const [playing, playToggle, currentTime, setCurrentTime, endTime] = useAudio(
     music?.source as string,
   );
 
@@ -84,8 +90,11 @@ const PlayPage = () => {
         </Styled.ControllerContainer>
 
         <Styled.ProgressBarContainer>
-          <ProgressBar value={progress} />
-          <ProgressTime currentTime={currentTime} endTime={endTime} />
+          <ProgressBar value={getControlProgress(currentTime, endTime)} />
+          <ProgressTime
+            currentTime={getCurrentTimeToString(currentTime)}
+            endTime={getEndTimeToString(endTime)}
+          />
         </Styled.ProgressBarContainer>
       </Styled.Container>
     </>
