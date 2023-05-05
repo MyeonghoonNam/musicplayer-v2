@@ -20,7 +20,7 @@ import * as Styled from './styled';
 const PlayPage = () => {
   const router = useRouter();
   const { data: music } = usePlayMusic(router.query.id as string);
-  const [playing, playToggle, value, currentTime, endTime] = useAudio(
+  const [playing, playToggle, progress, currentTime, endTime] = useAudio(
     music?.source as string,
   );
 
@@ -84,7 +84,7 @@ const PlayPage = () => {
         </Styled.ControllerContainer>
 
         <Styled.ProgressBarContainer>
-          <ProgressBar value={value} />
+          <ProgressBar value={progress} />
           <ProgressTime currentTime={currentTime} endTime={endTime} />
         </Styled.ProgressBarContainer>
       </Styled.Container>
