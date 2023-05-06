@@ -54,7 +54,15 @@ const useAudio = (url: string): ReturnType => {
     };
   }, [audio]);
 
-  return [playing, playToggle, currentTime, setCurrentTime, endTime];
+  const changeAudioCurrentTime = useCallback(
+    (targetTime: number) => {
+      audio.currentTime = targetTime;
+      setCurrentTime(() => targetTime);
+    },
+    [audio.currentTime],
+  );
+
+  return [playing, playToggle, currentTime, changeAudioCurrentTime, endTime];
 };
 
 export default useAudio;
