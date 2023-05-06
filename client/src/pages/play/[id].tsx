@@ -26,9 +26,8 @@ const PlayPage = () => {
   const router = useRouter();
   const { data: music } = usePlayMusic(router.query.id as string);
 
-  const [playing, playToggle, currentTime, setCurrentTime, endTime] = useAudio(
-    music?.source as string,
-  );
+  const [playing, playToggle, currentTime, changeAudioCurrentTime, endTime] =
+    useAudio(music?.source as string);
 
   const handlePlayClick = useCallback(() => {
     playToggle();
@@ -90,7 +89,11 @@ const PlayPage = () => {
         </Styled.ControllerContainer>
 
         <Styled.ProgressBarContainer>
-          <ProgressBar value={getControlProgress(currentTime, endTime)} />
+          <ProgressBar
+            value={getControlProgress(currentTime, endTime)}
+            duration={endTime}
+            changeAudioCurrentTime={changeAudioCurrentTime}
+          />
           <ProgressTime
             currentTime={getCurrentTimeToString(currentTime)}
             endTime={getEndTimeToString(endTime)}
