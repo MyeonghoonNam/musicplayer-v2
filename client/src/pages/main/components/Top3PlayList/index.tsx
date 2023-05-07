@@ -12,8 +12,6 @@ import MusicCover from './MusicCover';
 import MusicTitle from './MusicTitle';
 import MusicArtists from './MusicArtists';
 
-import { TOAST_DURATION } from './constants';
-
 import * as Styled from './styled';
 
 const Top3PlayList = () => {
@@ -39,7 +37,7 @@ const Top3PlayList = () => {
   const handleControllerAddClick = useCallback(
     async (id: string) => {
       await addPlayList(id);
-      Toast.show('보관함에 추가되었습니다.', TOAST_DURATION);
+      Toast.show('보관함에 추가되었습니다.');
     },
     [addPlayList],
   );
