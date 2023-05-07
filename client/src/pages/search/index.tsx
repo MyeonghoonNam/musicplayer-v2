@@ -1,7 +1,9 @@
 import Head from 'next/head';
 import { ReactElement } from 'react';
+
 import { TabMenuLayout } from '@/components';
-import { SearchBar } from './components';
+
+import { SearchBar, SearchPlayList } from './components';
 
 import * as Styled from './styled';
 
@@ -16,7 +18,7 @@ const SearchPage = () => {
 
       <Styled.Container>
         <SearchBar />
-        {/* SearchList */}
+        <SearchPlayList />
       </Styled.Container>
     </>
   );
