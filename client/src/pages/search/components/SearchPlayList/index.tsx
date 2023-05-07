@@ -42,6 +42,17 @@ const SearchPlayList = () => {
     [deletePlayList],
   );
 
+  const handleCotrollerPlayClick = useCallback(
+    (source: string) => {
+      if (source !== musicSrc) {
+        setMusicSrc(() => source);
+      } else {
+        playToggle();
+      }
+    },
+    [musicSrc, playToggle],
+  );
+
   return (
     <Styled.Container>
       {playlist?.map(({ id, cover, title, artists, source, hasPlaylist }) => (
@@ -59,7 +70,7 @@ const SearchPlayList = () => {
             <MusicController
               mode={musicSrc === source && playing ? 'pause' : 'play'}
               size="small"
-              // onClick={() => handleCotrollerPlayClick(source)}
+              onClick={() => handleCotrollerPlayClick(source)}
             />
 
             {hasPlaylist ? (
