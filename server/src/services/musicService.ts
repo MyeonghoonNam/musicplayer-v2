@@ -17,7 +17,9 @@ export const findPlayListMusic = (id: string) => {
 export const findTop3Musics = () => {
   const musics = db.data?.musics
     .map((music) =>
-      findPlayListMusic(music.id) ? { ...music, hasPlaylist: true } : music,
+      findPlayListMusic(music.id)
+        ? { ...music, hasPlaylist: true }
+        : { ...music, hasPlaylist: false },
     )
     .sort((a, b) => b.vote - a.vote)
     .slice(0, 3);
@@ -74,15 +76,21 @@ export const deletePlayList = async (music: Music) => {
 };
 
 export const findSearchPlayList = (query: string) => {
-  const searchedPlayList = db.data?.musics.filter(({ artists, title }) => {
-    const filterArtists = artists.some((artist) =>
-      artist.toUpperCase().includes(query.toUpperCase()),
+  const searchedPlayList = db.data?.musics
+    .filter(({ artists, title }) => {
+      const filterArtists = artists.some((artist) =>
+        artist.toUpperCase().includes(query.toUpperCase()),
+      );
+
+      const filterTitle = title.toUpperCase().includes(query.toUpperCase());
+
+      return filterArtists || filterTitle;
+    })
+    .map((music) =>
+      findPlayListMusic(music.id)
+        ? { ...music, hasPlaylist: true }
+        : { ...music, hasPlaylist: false },
     );
-
-    const filterTitle = title.toUpperCase().includes(query.toUpperCase());
-
-    return filterArtists || filterTitle;
-  });
 
   return searchedPlayList || [];
 };
