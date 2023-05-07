@@ -5,7 +5,7 @@ interface Props {
 }
 
 const MusicArtists = ({ artists }: Props) => {
-  return <Styled.Container>{artists}</Styled.Container>;
+  return <Styled.Container>{artists.join(', ')}</Styled.Container>;
 };
 
 export default MusicArtists;
