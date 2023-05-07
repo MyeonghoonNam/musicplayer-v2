@@ -100,3 +100,11 @@ export const deletePlayList = async (req: Request, res: Response) => {
 
   return res.status(StatusCodes.OK).send(null);
 };
+
+export const getSearchPlayList = (req: Request, res: Response) => {
+  const { query } = req.params;
+
+  const searchedPlayList = musicService.findSearchPlayList(query);
+
+  return res.status(StatusCodes.OK).send(createResponse(searchedPlayList));
+};
