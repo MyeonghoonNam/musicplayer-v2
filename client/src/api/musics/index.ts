@@ -16,3 +16,6 @@ export const getPlayList = () => config.get<Music[]>(`${RESOURCE}/playlist`);
 
 export const getPlayMusic = (id: string) =>
   config.get<Music>(`${RESOURCE}/play/${id}`);
+
+export const getSearchPlayList = (query: string) =>
+  config.get<Music[]>(`${RESOURCE}/search/${query}`);
