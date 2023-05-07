@@ -5,6 +5,7 @@ import {
   getPlayMusic,
   addPlayList,
   deletePlayList,
+  getSearchPlayList,
 } from '../controllers/musicController';
 
 const router = express.Router();
@@ -14,5 +15,6 @@ router.get('/playlist', getPlayList);
 router.post('/playlist/:id', addPlayList);
 router.delete('/playlist/:id', deletePlayList);
 router.get('/play/:id', getPlayMusic);
+router.get('/search/:query', getSearchPlayList);
 
 export default router;
