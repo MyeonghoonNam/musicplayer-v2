@@ -3,6 +3,7 @@ import { NextPage } from 'next';
 import { ReactElement, ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { RecoilRoot } from 'recoil';
 
 import '@/styles/globals.css';
 
@@ -21,8 +22,10 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
 
   return getLayout(
     <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />
-      <ReactQueryDevtools initialIsOpen={false} />
+      <RecoilRoot>
+        <Component {...pageProps} />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </RecoilRoot>
     </QueryClientProvider>,
   );
 };
