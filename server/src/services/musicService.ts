@@ -72,3 +72,17 @@ export const deletePlayList = async (music: Music) => {
 
   await db.write();
 };
+
+export const findSearchPlayList = (query: string) => {
+  const searchedPlayList = db.data?.musics.filter(({ artists, title }) => {
+    const filterArtists = artists.some((artist) =>
+      artist.toUpperCase().includes(query.toUpperCase()),
+    );
+
+    const filterTitle = title.toUpperCase().includes(query.toUpperCase());
+
+    return filterArtists || filterTitle;
+  });
+
+  return searchedPlayList || [];
+};
