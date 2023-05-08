@@ -59,7 +59,7 @@ MusicPlayer v2는 모바일 뷰에서 사용가능한 음악 플레이어 웹앱
 
 ### Search Page
 
-- 검색을 통한 노래 리스트
+- 검색을 통한 노래 리스트 조회
 - debounce를 통한 api 호출 최소화
 - 검색을 통한 노래 리스트에서의 간소한 노래 재생 및 정지, 플레이리스트 추가 및 삭제
 
@@ -235,6 +235,8 @@ MainPage.getLayout = (page: ReactElement) => {
 ---
 
 ## 서버
+### 개발환경
+Express, typescript, low DB
 
 ### 3계층구조
 
