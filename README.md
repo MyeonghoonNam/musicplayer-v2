@@ -20,7 +20,7 @@
 
 MusicPlayer v2는 모바일 뷰에서 사용가능한 음악 플레이어 웹앱입니다.
 
-기존의 바닐라 자바스크립트로 구현해본 [MusicPlayer]()를 Next.js 프레임워크를 사용하여 마이그레이션한 버전입니다.
+기존의 바닐라 자바스크립트로 구현해본 [MusicPlayer](https://github.com/MyeonghoonNam/MusicPlayer)를 Next.js 프레임워크를 사용하여 마이그레이션한 버전입니다.
 
 클라이언트/서버 영역으로 나누어 구현하였습니다.
 
