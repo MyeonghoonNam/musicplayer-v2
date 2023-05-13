@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { useIsMobile } from '@/hooks';
-import { ViewSizeWarn } from '@/components';
+import VRootLayout from './view';
 
 interface Props {
   children: ReactNode;
@@ -11,11 +11,12 @@ const RootLayout = ({ children }: Props) => {
 
   if (isLoading) return null;
 
-  return (
-    <main className="w-[100%] h-[calc(100vh-80px)]">
-      {isMobile ? children : <ViewSizeWarn />}
-    </main>
-  );
+  const props = {
+    isMobile,
+    children,
+  };
+
+  return <VRootLayout {...props} />;
 };
 
 export default RootLayout;
