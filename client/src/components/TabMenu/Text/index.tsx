@@ -1,6 +1,6 @@
-import type { TabMenu } from './types';
+import VText from './view';
 
-import * as Styled from './styled';
+import type { TabMenu } from './types';
 
 interface Props {
   text: TabMenu;
@@ -8,7 +8,9 @@ interface Props {
 }
 
 const Text = ({ text, on }: Props) => {
-  return <Styled.Container on={on}>{text}</Styled.Container>;
+  const props = { text, on };
+
+  return <VText {...props} />;
 };
 
 export default Text;
