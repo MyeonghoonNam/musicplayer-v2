@@ -37,7 +37,6 @@
     "react-hooks/exhaustive-deps": "warn",
     "react/no-unknown-property": ["error", { "ignore": ["css"] }],
     "react/jsx-props-no-spreading": "off",
-    "import/no-cycle": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {
