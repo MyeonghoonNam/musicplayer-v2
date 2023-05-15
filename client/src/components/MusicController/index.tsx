@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import VMusicController from './view';
 
 import {
   MUSIC_CONTROLLER_IMAGE_MAP,
@@ -18,11 +18,16 @@ const MusicController = ({ mode, size, onClick, disabled }: Props) => {
   const { src, alt } = MUSIC_CONTROLLER_IMAGE_MAP[mode];
   const { width, height } = MUSIC_CONTROLLER_SIZE_MAP[size];
 
-  return (
-    <button type="button" onClick={onClick} disabled={disabled}>
-      <Image src={src} alt={alt} width={width} height={height} />
-    </button>
-  );
+  const props = {
+    src,
+    alt,
+    width,
+    height,
+    onClick,
+    disabled,
+  };
+
+  return <VMusicController {...props} />;
 };
 
 export default MusicController;
