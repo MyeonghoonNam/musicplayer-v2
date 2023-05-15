@@ -2,21 +2,12 @@
 
 - [소개](#소개)
 - [클라이언트](#클라이언트)
-  - [구현사항](#구현사항)
-    - [Top3 Music Page](#top3-music-page)
-    - [PlayList Page](#playlist-page)
-    - [Play Page](#play-page)
-    - [공통기능](#공통기능)
-  - [기술스택](#기술스택)
-  - [구조설계](#구조설계)
-  - [트러블슈팅](#트러블슈팅)
 - [서버](#서버)
-  - [3계층구조](#3계층구조)
-  - [API](#api)
 - [설치 및 실행](#설치-및-실행)
 - [개선예정사항](#개선예정사항)
 
 ## 소개
+
 MusicPlayer v2는 모바일 뷰에서 사용가능한 음악 플레이어 웹앱입니다.
 
 ## 클라이언트
@@ -213,7 +204,11 @@ MainPage.getLayout = (page: ReactElement) => {
  ┃ ┃ ┃ ┣ 📂hooks
 ```
 
-이부분에 대해서 좋은 예시들을 찾아보려고 구글링과 깃헙 레포지토리를 돌아다녔습니다. 그 결과 상당수가 비슷하며 그런 설계에 대한 이유를 리드미를 통해 찾지 못하였습니다. 속시원한 해답을 얻은 느낌은 아니지만 프로젝트 규모가 비대해진다면 이러한 접근성이 용이할 수 있지 않을까? 라는 항상 팀의 방향에 걸맞는 유기적인 생각과 선택을 할 줄 알아야겠다고 생각을 하게 되었습니다.
+이부분에 대해 여러 키워드를 검색해보다 리액트의 VAC 디자인 패턴에 대해 접하게 되었습니다.
+
+VAC 패턴에 대해 기록하여 공부할 수 있었고 이 프로젝트에도 적용해보았습니다.
+
+[VAC패턴 학습기록](https://velog.io/@codenmh0822/React-VAC-%ED%8C%A8%ED%84%B4)
 
 #### audio 객체의 크롬 자동재생 정책
 
@@ -230,7 +225,9 @@ MainPage.getLayout = (page: ReactElement) => {
 ---
 
 ## 서버
+
 ### 개발환경
+
 Express, typescript, low DB
 
 ### 3계층구조
@@ -267,7 +264,9 @@ Control, Service, Model의 3계층 설계를 생각하며 개발하였습니다.
 
 ### API
 
-#### getTop3Musics
+<details>
+<summary>getTop3Musics</summary>
+<div markdown="1">
 
 URL
 
@@ -309,7 +308,12 @@ RESPONSE
 }
 ```
 
-#### getPlayList
+</div>
+</details>
+
+<details>
+<summary>getPlayList</summary>
+<div markdown="1">
 
 URL
 
@@ -336,7 +340,12 @@ RESPONSE
 }
 ```
 
-#### getPlayMusic
+</div>
+</details>
+
+<details>
+<summary>getPlayMusic</summary>
+<div markdown="1">
 
 URL
 
@@ -360,7 +369,12 @@ RESPONSE
 }
 ```
 
-#### addPlayList
+</div>
+</details>
+
+<details>
+<summary>addPlayList</summary>
+<div markdown="1">
 
 URL
 
@@ -382,7 +396,12 @@ RESPONSE
 }
 ```
 
-#### deletePlayList
+</div>
+</details>
+
+<details>
+<summary>deletePlayList</summary>
+<div markdown="1">
 
 URL
 
@@ -396,7 +415,12 @@ RESPONSE
 }
 ```
 
-#### getSearchPlayList
+</div>
+</details>
+
+<details>
+<summary>getSearchPlayList</summary>
+<div markdown="1">
 
 URL
 
@@ -421,6 +445,9 @@ RESPONSE
   ]
 }
 ```
+
+</div>
+</details>
 
 ---
 
