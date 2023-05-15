@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { ReactElement } from 'react';
-import { Intro, Top3Roof, Top3PlayList } from './main/components';
 import { TabMenuLayout } from '@/components';
+import { Intro, Top3Roof, Top3PlayList } from './main/components';
 
 import * as Styled from './styled';
 

@@ -13,6 +13,7 @@
   },
   "plugins": ["@typescript-eslint", "react-hooks"],
   "extends": [
+    "next/core-web-vitals",
     "airbnb",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
@@ -34,7 +35,9 @@
     ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
     "react/jsx-props-no-spreading": "off",
+    "import/no-cycle": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {

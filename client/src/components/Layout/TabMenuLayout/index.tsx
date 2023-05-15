@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import RootLayout from '../RootLayout';
 import { TabMenu } from '@/components';
+import RootLayout from '../RootLayout';
 
 interface Props {
   children: ReactNode;
