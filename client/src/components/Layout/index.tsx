@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
 import { useIsMobile } from '@/hooks';
-import VRootLayout from './view';
+import VLayout from './view';
 
 interface Props {
   children: ReactNode;
 }
 
-const RootLayout = ({ children }: Props) => {
+const Layout = ({ children }: Props) => {
   const [isMobile, isLoading] = useIsMobile();
 
   if (isLoading) return null;
@@ -16,7 +16,7 @@ const RootLayout = ({ children }: Props) => {
     children,
   };
 
-  return <VRootLayout {...props} />;
+  return <VLayout {...props} />;
 };
 
-export default RootLayout;
+export default Layout;
