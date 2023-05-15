@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { ReactElement, useCallback } from 'react';
 import { useRouter } from 'next/router';
 
-import { MusicController, RootLayout } from '@/components';
+import { Layout, MusicController } from '@/components';
 import { useAudio } from '@/hooks';
 import {
   getControlProgress,
@@ -105,7 +105,7 @@ const PlayPage = () => {
 };
 
 PlayPage.getLayout = (page: ReactElement) => {
-  return <RootLayout>{page}</RootLayout>;
+  return <Layout>{page}</Layout>;
 };
 
 export default PlayPage;

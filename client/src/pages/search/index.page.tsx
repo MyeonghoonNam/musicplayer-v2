@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { ReactElement } from 'react';
 
-import { TabMenuLayout } from '@/components';
+import { Layout, TabMenu } from '@/components';
 
 import { SearchBar, SearchPlayList } from './components';
 
@@ -25,7 +25,12 @@ const SearchPage = () => {
 };
 
 SearchPage.getLayout = (page: ReactElement) => {
-  return <TabMenuLayout>{page}</TabMenuLayout>;
+  return (
+    <Layout>
+      {page}
+      <TabMenu />
+    </Layout>
+  );
 };
 
 export default SearchPage;

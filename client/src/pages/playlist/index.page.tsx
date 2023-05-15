@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { ReactElement } from 'react';
-import { TabMenuLayout } from '@/components';
+import { Layout, TabMenu } from '@/components';
 import { Title, PlayList } from './components';
 
 import * as Styled from './styled';
@@ -23,7 +23,12 @@ const PlayListPage = () => {
 };
 
 PlayListPage.getLayout = (page: ReactElement) => {
-  return <TabMenuLayout>{page}</TabMenuLayout>;
+  return (
+    <Layout>
+      {page}
+      <TabMenu />
+    </Layout>
+  );
 };
 
 export default PlayListPage;
