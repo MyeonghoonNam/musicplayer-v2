@@ -9,7 +9,7 @@ import MusicArtists from './MusicArtists';
 import * as Styled from './styled';
 
 interface Props {
-  musics: Music[];
+  musics?: Music[];
   musicSrc: string;
   playing: boolean;
   addPlayListLoading: boolean;

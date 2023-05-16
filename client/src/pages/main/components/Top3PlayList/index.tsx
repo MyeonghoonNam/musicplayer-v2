@@ -45,8 +45,6 @@ const Top3PlayList = () => {
     [deletePlayList],
   );
 
-  if (!musics) return;
-
   const props = {
     musics,
     musicSrc,
