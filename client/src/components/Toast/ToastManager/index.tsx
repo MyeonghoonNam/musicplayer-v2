@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { v4 } from 'uuid';
 
-import ToastItem from './ToastItem';
+import VToastManager from './view';
 
-import type { Toast, CreateToast } from './types';
+import type { Toast, CreateToast } from '../types';
 
 interface Props {
   onBind: (fn: CreateToast) => void;
@@ -30,18 +30,12 @@ const ToastManager = ({ onBind }: Props) => {
     onBind(createToast);
   }, [onBind, createToast]);
 
-  return (
-    <div className="fixed bottom-[90px] w-full px-[5px] z-1500">
-      {toasts.map(({ id, message, duration }) => (
-        <ToastItem
-          key={id}
-          message={message}
-          duration={duration}
-          onDone={() => removeToast(id)}
-        />
-      ))}
-    </div>
-  );
+  const props = {
+    toasts,
+    removeToast,
+  };
+
+  return <VToastManager {...props} />;
 };
 
 export default ToastManager;
