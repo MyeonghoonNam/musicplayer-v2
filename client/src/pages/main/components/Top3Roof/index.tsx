@@ -1,8 +1,10 @@
 import Image from 'next/image';
 
+import * as Styled from './styled';
+
 const Top3Roof = () => {
   return (
-    <div className="relative w-[100%] h-[35%] p-[24px] bg-[#9B51E0]">
+    <Styled.Container>
       <Image
         src="/images/logo.png"
         alt="logo"
@@ -11,7 +13,7 @@ const Top3Roof = () => {
         className="w-auto h-auto"
         priority
       />
-    </div>
+    </Styled.Container>
   );
 };
 
