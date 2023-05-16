@@ -1,5 +1,6 @@
+import type { Music } from '@/interfaces';
+
 import config from '../config';
-import type { Music } from './types';
 
 const RESOURCE = '/musics';
 

@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { Toast, MusicController } from '@/components';
+import { Toast } from '@/components';
 import { useAudio } from '@/hooks';
 import {
   useTop3Musics,
@@ -7,12 +7,7 @@ import {
   useDeletePlayList,
 } from '@/pages/main/hooks';
 
-import MusicScore from './MusicScore';
-import MusicCover from './MusicCover';
-import MusicTitle from './MusicTitle';
-import MusicArtists from './MusicArtists';
-
-import * as Styled from './styled';
+import VTop3PlayList from './view';
 
 const Top3PlayList = () => {
   const [musicSrc, setMusicSrc] = useState('');
@@ -50,52 +45,20 @@ const Top3PlayList = () => {
     [deletePlayList],
   );
 
-  return (
-    <Styled.Container>
-      {musics?.map(
-        ({ id, cover, title, artists, source, hasPlaylist }, index) => (
-          <Styled.ItemContainer key={id}>
-            <MusicScore score={index + 1} />
+  if (!musics) return;
 
-            <Styled.ContentsAndControllerContainer>
-              <Styled.ContentsContainer>
-                <MusicCover cover={cover} width={50} height={50} />
+  const props = {
+    musics,
+    musicSrc,
+    playing,
+    addPlayListLoading,
+    deletePlayListLoading,
+    handleCotrollerPlayClick,
+    handleControllerAddClick,
+    handleControllerDeleteClick,
+  };
 
-                <Styled.TitleAndArtistsContainer>
-                  <MusicTitle title={title} />
-                  <MusicArtists artists={artists} />
-                </Styled.TitleAndArtistsContainer>
-              </Styled.ContentsContainer>
-
-              <Styled.ControllerContainer>
-                <MusicController
-                  mode={musicSrc === source && playing ? 'pause' : 'play'}
-                  size="small"
-                  onClick={() => handleCotrollerPlayClick(source)}
-                />
-
-                {hasPlaylist ? (
-                  <MusicController
-                    mode="minus"
-                    size="small"
-                    disabled={deletePlayListLoading}
-                    onClick={() => handleControllerDeleteClick(id)}
-                  />
-                ) : (
-                  <MusicController
-                    mode="plus"
-                    size="small"
-                    disabled={addPlayListLoading}
-                    onClick={() => handleControllerAddClick(id)}
-                  />
-                )}
-              </Styled.ControllerContainer>
-            </Styled.ContentsAndControllerContainer>
-          </Styled.ItemContainer>
-        ),
-      )}
-    </Styled.Container>
-  );
+  return <VTop3PlayList {...props} />;
 };
 
 export default Top3PlayList;
