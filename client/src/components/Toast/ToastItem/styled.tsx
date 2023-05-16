@@ -1,23 +1,20 @@
-import tw from 'twin.macro';
-import { css } from '@emotion/react';
-import { useMemo, useState } from 'react';
-import { useTimeout } from '@/hooks';
+import { ReactNode } from 'react';
+import tw, { css } from 'twin.macro';
 
 interface Props {
-  message: string;
-  duration: number;
-  onDone: () => void;
+  children: ReactNode;
 }
 
-const ToastItem = ({ message, duration, onDone }: Props) => {
-  const [show, setShow] = useState(true);
-  const animationDelay = useMemo(() => 400, []);
+type ContainerProps = Props & {
+  show: boolean;
+  animationDelay: number;
+};
 
-  useTimeout(() => {
-    setShow(false);
-    setTimeout(() => onDone(), animationDelay);
-  }, duration);
-
+export const Container = ({
+  show,
+  animationDelay,
+  children,
+}: ContainerProps) => {
   return (
     <div
       css={[
@@ -46,9 +43,11 @@ const ToastItem = ({ message, duration, onDone }: Props) => {
         `,
       ]}
     >
-      <span className="text-[14px] text-white">{message}</span>
+      {children}
     </div>
   );
 };
 
-export default ToastItem;
+export const Text = ({ children }: Props) => {
+  return <span className="text-[14px] text-white">{children}</span>;
+};
