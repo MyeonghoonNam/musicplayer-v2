@@ -1,4 +1,5 @@
 import { ChangeEvent, useCallback } from 'react';
+import VProgressBar from './view';
 
 interface Props {
   value: number;
@@ -15,16 +16,12 @@ const ProgressBar = ({ value, duration, changeAudioCurrentTime }: Props) => {
     [duration, changeAudioCurrentTime],
   );
 
-  return (
-    <input
-      type="range"
-      min="0"
-      max="1000"
-      value={value}
-      onChange={handleChange}
-      className="w-full"
-    />
-  );
+  const props = {
+    value,
+    handleChange,
+  };
+
+  return <VProgressBar {...props} />;
 };
 
 export default ProgressBar;
