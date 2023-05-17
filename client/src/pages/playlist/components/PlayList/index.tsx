@@ -1,12 +1,9 @@
 import { useCallback } from 'react';
-import { MusicController, Toast } from '@/components';
+import { Toast } from '@/components';
+
 import { usePlayList, useDeletePlayList } from '../../hooks';
 
-import MusicArtists from './MusicArtists';
-import MusicCover from './MusicCover';
-import MusicTitle from './MusicTitle';
-
-import * as Styled from './styled';
+import VPlayList from './view';
 
 const PlayList = () => {
   const { data: playlist } = usePlayList();
@@ -20,35 +17,14 @@ const PlayList = () => {
     [deletePlayList],
   );
 
-  return (
-    <Styled.Container>
-      {playlist?.map(({ id, cover, title, artists }) => (
-        <Styled.ItemContainer key={id}>
-          <Styled.ContentsContainer path={id}>
-            <MusicCover
-              cover={cover}
-              alt="music-cover"
-              width={50}
-              height={50}
-            />
+  if (!playlist) return null;
 
-            <Styled.TitleAndArtistsContainer>
-              <MusicTitle title={title} />
-              <MusicArtists artists={artists} />
-            </Styled.TitleAndArtistsContainer>
-          </Styled.ContentsContainer>
+  const props = {
+    playlist,
+    handleDeletePlayListClick,
+  };
 
-          <Styled.ControllerContainer>
-            <MusicController
-              mode="minus"
-              size="small"
-              onClick={() => handleDeletePlayListClick(id)}
-            />
-          </Styled.ControllerContainer>
-        </Styled.ItemContainer>
-      ))}
-    </Styled.Container>
-  );
+  return <VPlayList {...props} />;
 };
 
 export default PlayList;
