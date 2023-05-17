@@ -10,11 +10,7 @@ import {
   useDeletePlayList,
 } from '../../hooks';
 
-import MusicCover from './MusicCover';
-import MusicTitle from './MusicTitle';
-import MusicArtists from './MusicArtists';
-
-import * as Styled from './styled';
+import VSearchPlayList from './view';
 
 const SearchPlayList = () => {
   const keyword = useRecoilValue(searchKeywordState);
@@ -53,46 +49,20 @@ const SearchPlayList = () => {
     [musicSrc, playToggle],
   );
 
-  return (
-    <Styled.Container>
-      {playlist?.map(({ id, cover, title, artists, source, hasPlaylist }) => (
-        <Styled.ItemContainer key={id}>
-          <Styled.ContentsContainer>
-            <MusicCover cover={cover} />
+  if (!playlist) return null;
 
-            <Styled.TitleAndArtistsContainer>
-              <MusicTitle title={title} />
-              <MusicArtists artists={artists} />
-            </Styled.TitleAndArtistsContainer>
-          </Styled.ContentsContainer>
+  const props = {
+    musicSrc,
+    playlist,
+    playing,
+    addPlayListLoading,
+    deletePlayListLoading,
+    handleControllerAddClick,
+    handleControllerDeleteClick,
+    handleCotrollerPlayClick,
+  };
 
-          <Styled.ControllerContainer>
-            <MusicController
-              mode={musicSrc === source && playing ? 'pause' : 'play'}
-              size="small"
-              onClick={() => handleCotrollerPlayClick(source)}
-            />
-
-            {hasPlaylist ? (
-              <MusicController
-                mode="minus"
-                size="small"
-                disabled={deletePlayListLoading}
-                onClick={() => handleControllerDeleteClick(id)}
-              />
-            ) : (
-              <MusicController
-                mode="plus"
-                size="small"
-                disabled={addPlayListLoading}
-                onClick={() => handleControllerAddClick(id)}
-              />
-            )}
-          </Styled.ControllerContainer>
-        </Styled.ItemContainer>
-      ))}
-    </Styled.Container>
-  );
+  return <VSearchPlayList {...props} />;
 };
 
 export default SearchPlayList;
