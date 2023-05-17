@@ -8,7 +8,7 @@ const Intro = () => {
 
   useTimeout(() => {
     setShow(false);
-  }, 1000);
+  }, 1500);
 
   const props = {
     show,
