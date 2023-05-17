@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { searchKeywordState } from '@/store/state';
-import { Toast, MusicController } from '@/components';
+import { Toast } from '@/components';
 import { useAudio } from '@/hooks';
 
 import {
