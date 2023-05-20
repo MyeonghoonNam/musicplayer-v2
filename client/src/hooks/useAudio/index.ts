@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useState } from 'react';
-
+import { useRecoilValue } from 'recoil';
+import { playRotateState } from '@/store/state';
 import type { ReturnType } from './types';
 
 const useAudio = (url: string): ReturnType => {
@@ -8,6 +9,7 @@ const useAudio = (url: string): ReturnType => {
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [endTime, setEndTime] = useState(0);
+  const playRotate = useRecoilValue(playRotateState);
 
   const playToggle = useCallback(() => {
     setPlaying((prev) => !prev);
@@ -38,7 +40,13 @@ const useAudio = (url: string): ReturnType => {
       setEndTime(() => audio.duration);
     };
 
-    const endedListener = () => setPlaying(false);
+    const endedListener = () => {
+      if (playRotate) {
+        audio.load();
+      } else {
+        setPlaying(false);
+      }
+    };
 
     setPlaying(true);
     setCurrentTime(0);
