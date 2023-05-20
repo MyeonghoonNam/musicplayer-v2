@@ -24,6 +24,7 @@ import * as Styled from './styled';
 interface Props {
   music: Music;
   playing: boolean;
+  rotate: boolean;
   currentTime: number;
   changeAudioCurrentTime: (time: number) => void;
   endTime: number;
@@ -31,11 +32,13 @@ interface Props {
   handleNextClick: () => void;
   handlePrevClick: () => void;
   handleBackClick: () => void;
+  handleRotateClick: () => void;
 }
 
 const VPlayPage = ({
   music,
   playing,
+  rotate,
   currentTime,
   changeAudioCurrentTime,
   endTime,
@@ -43,6 +46,7 @@ const VPlayPage = ({
   handleNextClick,
   handlePrevClick,
   handleBackClick,
+  handleRotateClick,
 }: Props) => {
   return (
     <>
@@ -78,7 +82,11 @@ const VPlayPage = ({
             size="middle"
             onClick={handleNextClick}
           />
-          <MusicController mode="rotate_off" size="middle" />
+          <MusicController
+            mode={rotate ? 'rotate_on' : 'rotate_off'}
+            size="middle"
+            onClick={handleRotateClick}
+          />
         </Styled.ControllerContainer>
 
         <Styled.ProgressBarContainer>
