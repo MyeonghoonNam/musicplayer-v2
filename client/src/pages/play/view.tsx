@@ -25,6 +25,7 @@ interface Props {
   music: Music;
   playing: boolean;
   rotate: boolean;
+  repeat: boolean;
   currentTime: number;
   changeAudioCurrentTime: (time: number) => void;
   endTime: number;
@@ -33,12 +34,14 @@ interface Props {
   handlePrevClick: () => void;
   handleBackClick: () => void;
   handleRotateClick: () => void;
+  handleRepeatClick: () => void;
 }
 
 const VPlayPage = ({
   music,
   playing,
   rotate,
+  repeat,
   currentTime,
   changeAudioCurrentTime,
   endTime,
@@ -47,6 +50,7 @@ const VPlayPage = ({
   handlePrevClick,
   handleBackClick,
   handleRotateClick,
+  handleRepeatClick,
 }: Props) => {
   return (
     <>
@@ -66,7 +70,11 @@ const VPlayPage = ({
         </Styled.ContentsContainer>
 
         <Styled.ControllerContainer>
-          <MusicController mode="repeat_off" size="middle" />
+          <MusicController
+            mode={repeat ? 'repeat_on' : 'repeat_off'}
+            size="middle"
+            onClick={handleRepeatClick}
+          />
           <MusicController
             mode="backward"
             size="middle"
