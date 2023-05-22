@@ -38,12 +38,20 @@ const PlayPage = () => {
   }, [router]);
 
   const handleRotateClick = useCallback(() => {
+    if (repeat) {
+      setRepeat(false);
+    }
+
     setRotate((state) => !state);
-  }, [setRotate]);
+  }, [repeat, setRepeat, setRotate]);
 
   const handleRepeatClick = useCallback(() => {
-    setRepeat((prev) => !prev);
-  }, [setRepeat]);
+    if (rotate) {
+      setRotate(false);
+    }
+
+    setRepeat((state) => !state);
+  }, [rotate, setRotate, setRepeat]);
 
   if (!music) return null;
 
