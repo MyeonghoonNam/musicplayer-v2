@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { playRotateState } from '@/store/state';
+import { useRouter } from 'next/router';
 import type { ReturnType } from './types';
 
 const useAudio = (url: string): ReturnType => {
@@ -10,7 +11,8 @@ const useAudio = (url: string): ReturnType => {
   const [currentTime, setCurrentTime] = useState(0);
   const [end, setEnd] = useState(false);
   const [endTime, setEndTime] = useState(0);
-  const playRotate = useRecoilValue(playRotateState);
+  const [rotate, setRotate] = useRecoilState(playRotateState);
+  const router = useRouter();
 
   const playToggle = useCallback(() => {
     setPlaying((prev) => !prev);
@@ -61,7 +63,7 @@ const useAudio = (url: string): ReturnType => {
 
   useEffect(() => {
     if (end) {
-      if (playRotate) {
+      if (rotate) {
         audio.load();
         audio.play();
       } else {
@@ -70,6 +72,14 @@ const useAudio = (url: string): ReturnType => {
     }
 
     setEnd(false);
+
+    return () => {
+      const page = router.pathname.split('/')[1];
+
+      if (page !== 'play') {
+        setRotate(false);
+      }
+    };
   }, [end]);
 
   const changeAudioCurrentTime = useCallback(
