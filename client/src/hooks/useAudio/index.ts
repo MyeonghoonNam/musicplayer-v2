@@ -8,6 +8,7 @@ const useAudio = (url: string): ReturnType => {
   const [audio, setAudio] = useState(new Audio(url));
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  const [end, setEnd] = useState(false);
   const [endTime, setEndTime] = useState(0);
   const playRotate = useRecoilValue(playRotateState);
 
@@ -41,11 +42,7 @@ const useAudio = (url: string): ReturnType => {
     };
 
     const endedListener = () => {
-      if (playRotate) {
-        audio.load();
-      } else {
-        setPlaying(false);
-      }
+      setEnd(true);
     };
 
     setPlaying(true);
@@ -61,6 +58,19 @@ const useAudio = (url: string): ReturnType => {
       audio.removeEventListener('ended', endedListener);
     };
   }, [audio]);
+
+  useEffect(() => {
+    if (end) {
+      if (playRotate) {
+        audio.load();
+        audio.play();
+      } else {
+        setPlaying(false);
+      }
+    }
+
+    setEnd(false);
+  }, [end]);
 
   const changeAudioCurrentTime = useCallback(
     (targetTime: number) => {
