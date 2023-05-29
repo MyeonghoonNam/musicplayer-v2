@@ -38,7 +38,7 @@ MusicPlayer v2는 모바일 뷰에서 사용가능한 음악 플레이어 웹앱
 - 이전 페이지로 돌아가기
 - 현재 노래 재생 상태 표시(프로그레스 바)
 - 현재 노래 재생 위치 변경(프로그레스 바에서 원하는 위치 클릭)
-- 플레이리스트 전체 노래 재생 (추가 예정)
+- 플레이리스트 랜덤 재생
 - 현재 노래 반복 재생
 
 ![play](https://user-images.githubusercontent.com/57757719/236744077-2a654bb6-8c46-498a-b1dc-e08654b059fe.gif)
@@ -477,7 +477,6 @@ localhost:3000
 
 ## 개선예정사항
 
-- 플레이리스트 전체 재생 기능
 - Suspense 및 Error Boundary 적용
 - github Action을 활용한 CI/CD 구축
 
