@@ -49,6 +49,18 @@ export const getPlayMusic = (req: Request, res: Response) => {
   return res.status(StatusCodes.OK).send(createResponse(playMusic));
 };
 
+export const getPlayRandomMusic = (req: Request, res: Response) => {
+  const randomMusic = musicService.findRandomMusic();
+
+  if (!randomMusic) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .send(MUSICS_ERRORS.MUSIC_NOT_FOUND);
+  }
+
+  return res.status(StatusCodes.OK).send(createResponse(randomMusic));
+};
+
 export const addPlayList = (req: Request, res: Response) => {
   const { id: musicId } = req.params;
 
