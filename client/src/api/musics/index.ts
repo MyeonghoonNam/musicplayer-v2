@@ -20,3 +20,5 @@ export const getPlayMusic = (id: string) =>
 
 export const getSearchPlayList = (query: string) =>
   config.get<Music[]>(`${RESOURCE}/search/${query}`);
+
+export const getPlayRandomMusic = () => config.get<Music>(`${RESOURCE}/random`);
