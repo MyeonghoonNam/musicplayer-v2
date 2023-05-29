@@ -27,6 +27,15 @@ export const findTop3Musics = () => {
   return musics;
 };
 
+export const findRandomMusic = () => {
+  if (db.data) {
+    const randomIndex = Math.floor(Math.random() * db.data.playlist.length);
+    return db.data.playlist[randomIndex];
+  }
+
+  return undefined;
+};
+
 export const addPlayList = async (music: Music) => {
   const playlist = db.data?.playlist;
 
