@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { playRotateState } from '@/store/state';
+import { playRotateState, playRepeatState } from '@/store/state';
 import { useRouter } from 'next/router';
+import { getPlayRandomMusic } from '@/api/musics';
 import type { ReturnType } from './types';
 
 const useAudio = (url: string): ReturnType => {
@@ -12,6 +13,8 @@ const useAudio = (url: string): ReturnType => {
   const [end, setEnd] = useState(false);
   const [endTime, setEndTime] = useState(0);
   const [rotate, setRotate] = useRecoilState(playRotateState);
+  const [repeat, setRepeat] = useRecoilState(playRepeatState);
+
   const router = useRouter();
 
   const playToggle = useCallback(() => {
@@ -62,24 +65,30 @@ const useAudio = (url: string): ReturnType => {
   }, [audio]);
 
   useEffect(() => {
-    if (end) {
-      if (rotate) {
-        audio.load();
-        audio.play();
-      } else {
-        setPlaying(false);
+    (async () => {
+      if (end) {
+        if (rotate) {
+          audio.load();
+          audio.play();
+        } else if (repeat) {
+          const randomMusic = await getPlayRandomMusic();
+          router.replace(`/play/${randomMusic?.id}`);
+        } else {
+          setPlaying(false);
+        }
       }
-    }
 
-    setEnd(false);
+      setEnd(false);
 
-    return () => {
-      const page = router.pathname.split('/')[1];
+      return () => {
+        const page = router.pathname.split('/')[1];
 
-      if (page !== 'play') {
-        setRotate(false);
-      }
-    };
+        if (page !== 'play') {
+          setRotate(false);
+          setRepeat(false);
+        }
+      };
+    })();
   }, [end]);
 
   const changeAudioCurrentTime = useCallback(
